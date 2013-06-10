@@ -12,6 +12,16 @@
 			</td>
 		</tr>
 <?foreach($this -> fields as $name => $field):?>
+<?if($field['type'] === 'group'):?>
+		<tr>
+			<td class="title">
+				<b><?=$field['title']?></b>
+			</td>
+			<td class="field">
+				&nbsp;
+			</td>
+		</tr>
+<?else:?>
 		<tr>
 			<td class="title">
 				<?=$field['title']?><?if( $field['require']):?><span class="require">*</span><?endif;?>:
@@ -80,6 +90,7 @@
 <?endif;?>
 			</td>
 		</tr>
+<?endif;?>
 <?endforeach;?>
 		<tr>
 			<td colspan="2">

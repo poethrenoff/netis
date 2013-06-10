@@ -1,71 +1,36 @@
 <?php
 class admin_table_file extends admin_table
 {
-    protected function record_card( $action = 'edit' )
+    protected function action_add_save($redirect = true)
     {
-        if ( $action == 'add' )
-        {
-            $prev_url = decode_object( init_session( 'prev_table_url' ) );
-            $query_params = array_merge( $prev_url, decode_object( init_string( 'card_url' ) ) );
-            
-            if ( isset( $query_params['picture_product'] ) )
-            {
-                $product_query = '
-                    select product_title, 
-                        ( select count(*) from picture where picture_product = product_id ) as picture_count
-                    from product
-                    where product_id = :product_id';
-                $product_record = db::select( $product_query, array( 'product_id' => $query_params['picture_product'] ) );
-                
-                $this -> fields['picture_title']['default'] =
-                    $product_record['product_title'] . ' (' . ( $product_record['picture_count'] + 1 ) . ')';
-            }
-        }
+        $primary_field = parent::action_add_save(false);
+        $record = $this->get_record($primary_field);
         
-        parent::record_card( $action );
-    }
-    
-    protected function action_add_save( $redirect = true )
-    {
-        $primary_field = parent::action_add_save( false );
+        if ((isset($_FILES['file_name_file']['name']) && $_FILES['file_name_file']['name']))
+            db::update('file', array('file_size' => filesize($this->get_file_path($record['file_name']))), array($this->primary_field => $primary_field));
         
-        if ( ( isset( $_FILES['picture_name_big_file']['name'] ) && $_FILES['picture_name_big_file']['name'] ) &&
-                !( isset( $_FILES['picture_name_small_file']['name'] ) && $_FILES['picture_name_small_file']['name'] ) )
-            $this -> make_preview_images( $primary_field );
-        
-        if ( $redirect )
-            $this -> redirect();
+        if ($redirect)
+            $this->redirect();
         
         return $primary_field;
     }
     
-    protected function action_edit_save( $redirect = true )
+    protected function action_edit_save($redirect = true)
     {
-        parent::action_edit_save( false );
+        parent::action_edit_save(false);
         
-        if ( ( isset( $_FILES['picture_name_big_file']['name'] ) && $_FILES['picture_name_big_file']['name'] ) &&
-                !( isset( $_FILES['picture_name_small_file']['name'] ) && $_FILES['picture_name_small_file']['name'] ) )
-            $this -> make_preview_images();
+        $record = $this->get_record();
+        $primary_field = $record[$this->primary_field];
         
-        if ( $redirect )
-            $this -> redirect();
+        if ((isset($_FILES['file_name_file']['name']) && $_FILES['file_name_file']['name']))
+            db::update('file', array('file_size' => filesize($this->get_file_path($record['file_name']))), array($this->primary_field => $primary_field));
+        
+        if ($redirect)
+            $this->redirect();
     }
     
-    //////////////////////////////////////////////////////////////////////////
-    
-    protected function make_preview_images( $primary_field = '' )
+    protected function get_file_path($file_name)
     {
-        if ( $primary_field === '' )
-            $primary_field = init_string( $this -> primary_field );
-            
-        $record = $this -> get_record( $primary_field );
-        
-        $small_picture_path = image::process(
-            'resize', $record['picture_name_big'], $this -> fields['picture_name_small']['upload_dir'], 55, 42, array( 'background' ) );
-        
-        db::update( 'picture', array( 'picture_name_small' => $small_picture_path ),
-            array( $this -> primary_field => $primary_field ) );
-        
-        image::watermark( $record['picture_name_big'], '', $_SERVER['DOCUMENT_ROOT'] . '/image/watermark.png' );
+        return str_replace(UPLOAD_ALIAS, UPLOAD_DIR, $file_name);
     }
 }

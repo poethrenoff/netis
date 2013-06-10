@@ -1,205 +1,149 @@
 <?php
 class admin_table_product extends admin_table
 {
-    protected function action_add_save( $redirect = true )
+    protected function action_copy_save($redirect = true)
     {
-        $primary_field = parent::action_add_save( false );
+        $primary_field = parent::action_copy_save(false);
         
-        if ( ( isset( $_FILES['product_picture_big_file']['name'] ) && $_FILES['product_picture_big_file']['name'] ) &&
-                !( isset( $_FILES['product_picture_middle_file']['name'] ) && $_FILES['product_picture_middle_file']['name'] ) &&
-                !( isset( $_FILES['product_picture_small_file']['name'] ) && $_FILES['product_picture_small_file']['name'] ) )
-            $this -> make_preview_images( $primary_field );
+        $product_properties = db::select_all('
+                select property, value from product_property where product = :product',
+            array('product' => id()));
         
-        $meta_fields = array();
-        foreach( array( 'meta_title', 'meta_keywords', 'meta_description' ) as $field_name )
-            $meta_fields[$field_name] = field::set_field( init_string( 'product_title' ),
-                metadata::$tables['meta']['fields'][$field_name] );
+        foreach($product_properties as $product_property)
+            db::insert('product_property', array('product' => $primary_field) + $product_property);
         
-        db::insert( 'meta', array( 'meta_module' => $this -> table, 'meta_content' => $primary_field ) + $meta_fields );
-        
-        if ( $redirect )
-            $this -> redirect();
+        if ($redirect)
+            $this->redirect();
         
         return $primary_field;
     }
     
-    protected function action_copy_save( $redirect = true )
+    protected function action_delete($redirect = true)
     {
-        $primary_field = parent::action_copy_save( false );
+        $record = $this->get_record();
+        $primary_field = $record[$this->primary_field];
         
-        $product_properties = db::select_all( '
-                select property, value
-                from product_property where product = :product',
-            array( 'product' => init_string( $this -> primary_field ) ) );
+        parent::action_delete(false);
         
-        foreach( $product_properties as $product_property )
-            db::insert( 'product_property', array( 'product' => $primary_field ) + $product_property );
+        db::delete('product_property', array('product' => $primary_field));
         
-        if ( $redirect )
-            $this -> redirect();
-        
-        return $primary_field;
-    }
-    
-    protected function action_edit_save( $redirect = true )
-    {
-        parent::action_edit_save( false );
-        
-        if ( ( isset( $_FILES['product_picture_big_file']['name'] ) && $_FILES['product_picture_big_file']['name'] ) &&
-                !( isset( $_FILES['product_picture_middle_file']['name'] ) && $_FILES['product_picture_middle_file']['name'] ) &&
-                !( isset( $_FILES['product_picture_small_file']['name'] ) && $_FILES['product_picture_small_file']['name'] ) )
-            $this -> make_preview_images();
-    
-        if ( $redirect )
-            $this -> redirect();
-    }
-    
-    protected function action_delete( $primary_field = '', $redirect = true )
-    {
-        if ( $primary_field === '' )
-            $primary_field = init_string( $this -> primary_field );
-        
-        parent::action_delete( $primary_field, false );
-        
-        db::delete( 'product_property', array( 'product' => $primary_field ) );
-        
-        if ( $redirect )
-            $this -> redirect();
+        if ($redirect)
+            $this->redirect();
     }
     
     protected function action_property()
     {
-        $primary_field = init_string( $this -> primary_field );
+        $record = $this->get_record();
+        $primary_field = $record[$this->primary_field];
         
-        $record = $this -> get_record( $primary_field );
-        
-        $properties = db::select_all( '
+        $properties = db::select_all('
                 select property.property_id, property.property_title, property.property_kind,
-                    product_property.value, property.property_unit
+                    product_property.value, property.property_unit, property.property_group, property_group.group_title
                 from property
-                    inner join product on property.property_type = product.product_type
+                    inner join property_group on property_group.group_id = property.property_group
+                    inner join product on property_group.group_type = product.product_type
                     left join product_property on product_property.property = property.property_id and
                         product_property.product = product.product_id
                 where product.product_id = :product_id
-                order by property.property_order',
-            array( 'product_id' => $record['product_id'] ) );
+                order by property_group.group_order, property.property_order',
+            array('product_id' => $primary_field));
         
         $form_fields = array();
-        foreach( $properties as $property_index => $property_value )
+        foreach($properties as $property_index => $property_value)
         {
+            if (!isset($form_fields['group[' . $property_value['property_group'] . ']'])) {
+                $form_fields['group[' . $property_value['property_group'] . ']'] = array(
+                    'title' => $property_value['group_title'], 'type' => 'group'
+               );
+            }
+            
             $property_type = $property_value['property_kind'] == 'number' ? 'float' : $property_value['property_kind'];
             $property_errors = $property_type == 'float' ? 'float' : '';
             
             $form_fields['property[' . $property_value['property_id'] . ']'] = array(
-                    'title' => $property_value['property_title'] . ( $property_value['property_unit'] ?
-                        ' (' . $property_value['property_unit'] . ')' : '' ),
-                    'type' => $property_type, 'errors' => $property_errors,
-                    'value' => field::form_field( $property_value['value'], $property_type ) );
+                'title' => $property_value['property_title'] . ($property_value['property_unit'] ?
+                    ' (' . $property_value['property_unit'] . ')' : ''),
+                'type' => $property_type, 'errors' => $property_errors,
+                'value' => field::form_field($property_value['value'], $property_type));
             
-            if ( $property_value['property_kind'] == 'select' )
+            if ($property_value['property_kind'] == 'select')
             {
-                $values = db::select_all( '
-                        select * from value
+                $values = db::select_all('
+                        select * from property_value
                         where value_property = :value_property
                         order by value_title',
-                    array( 'value_property' => $property_value['property_id'] ) );
+                    array('value_property' => $property_value['property_id']));
                     
                 $value_records = array();
-                foreach ( $values as $value )
-                    $value_records[] = array( 'value' => $value['value_id'], 'title' => $value['value_title'] );
+                foreach ($values as $value)
+                    $value_records[] = array('value' => $value['value_id'], 'title' => $value['value_title']);
                 
                 $form_fields['property[' . $property_value['property_id'] . ']']['values'] = $value_records;
             }
         }
-        
-        $hidden_fields = make_hidden( array_merge( $_GET,
-            array( 'action' => 'property_save', 'product_id' => $record['product_id'] ) ), array( 'card_url' ) );
-        
-        $record_title = $record[$this -> main_field];
+       
+        $record_title = $record[$this->main_field];
         $action_title = 'Редактирование свойств';
         
-        $tpl = new SmartyAdmin();
+        $this->view->assign('record_title', $this->object_desc['title'] . ($record_title ? ' :: ' . $record_title : ''));
+        $this->view->assign('action_title', $action_title);
+        $this->view->assign('fields', $form_fields);
         
-        $tpl -> assign( 'record_title', metadata::$tables[$this -> table]['title'] . ' :: ' . $record_title );
-        $tpl -> assign( 'action_title', $action_title );
-        $tpl -> assign( 'fields', $form_fields );
-        $tpl -> assign( 'hidden', $hidden_fields );
+        $form_url = url_for(array('object' => $this->object, 'action' => 'property_save', 'id' => $primary_field));
+        $this->view->assign('form_url', $form_url);
         
-        $this -> title = $this -> title . ' :: ' . $record_title . ' :: ' . $action_title;
-        
-        $this -> content = $tpl -> fetch( 'form.tpl' );
+        $this->content = $this->view->fetch('admin/form');
+        $this->output['meta_title'] .= ($record_title ? ' :: ' . $record_title : '') . ' :: ' . $action_title;
     }
     
-    protected function action_property_save( $redirect = true )
+    protected function action_property_save($redirect = true)
     {
-        $record = $this -> get_record( init_string( 'product_id' ) );
+        $record = $this->get_record();
+        $primary_field = $record[$this->primary_field];
         
-        $properties = db::select_all( '
+        $properties = db::select_all('
                 select property.property_id, property.property_title, property.property_kind
                 from property
-                    inner join product on property.property_type = product.product_type
+                    inner join property_group on property_group.group_id = property.property_group
+                    inner join product on property_group.group_type = product.product_type
                 where product.product_id = :product_id',
-            array( 'product_id' => $record['product_id'] ) );
+            array('product_id' => $primary_field));
         
-        $property_values = init_array( 'property' );
+        $property_values = init_array('property');
         
         $insert_fields = array();
-        foreach( $properties as $property_index => $property_value )
+        foreach($properties as $property_index => $property_value)
         {
             $property_type = $property_value['property_kind'] == 'number' ? 'float' : $property_value['property_kind'];
             $property_errors_code = $property_type == 'float' ? field::$errors['float'] : 0;
             
-            if ( isset( $property_values[$property_value['property_id']] ) )
+            if (isset($property_values[$property_value['property_id']]))
                 $insert_fields[$property_value['property_id']] =
-                    field::set_field( $property_values[$property_value['property_id']],
-                array( 'title' => $property_value['property_title'],
-                    'type' => $property_type, 'errors_code' => $property_errors_code ) );
+                    field::set_field($property_values[$property_value['property_id']],
+                array('title' => $property_value['property_title'],
+                    'type' => $property_type, 'errors_code' => $property_errors_code));
         }
         
-        db::delete( 'product_property', array( 'product' => $record['product_id'] ) );
+        db::delete('product_property', array('product' => $primary_field));
+        foreach($insert_fields as $property_id => $property_value)
+            if ($property_value !== null && $property_value !== '')
+                db::insert('product_property', array(
+                    'product' => $primary_field, 'property' => $property_id, 'value' => $property_value));
         
-        foreach( $insert_fields as $property_id => $property_value )
-            if ( $property_value !== null && $property_value !== '' )
-                db::insert( 'product_property', array(
-                    'product' => $record['product_id'], 'property' => $property_id, 'value' => $property_value ) );
-        
-        if ( $redirect )
-            $this -> redirect();
+        if ($redirect)
+            $this->redirect();
     }
     
     //////////////////////////////////////////////////////////////////////////
     
-    protected function get_record_actions( $record )
+    protected function get_record_actions($record)
     {
-        $actions = parent::get_record_actions( $record );
+        $actions = parent::get_record_actions($record);
         
-        $actions['property'] = array( 'title' => 'Свойства', 'url' =>
-            get_url( array( 'object' => $this -> table, 'action' => 'property',
-                $this -> primary_field => $record[$this -> primary_field] ) ) );
+        $actions['property'] = array('title' => 'Свойства', 'url' =>
+            url_for(array('object' => $this->object, 'action' => 'property',
+                'id' => $record[$this->primary_field])));
         
         return $actions;
-    }
-    
-    //////////////////////////////////////////////////////////////////////////
-    
-    protected function make_preview_images( $primary_field = '' )
-    {
-        if ( $primary_field === '' )
-            $primary_field = init_string( $this -> primary_field );
-            
-        $record = $this -> get_record( $primary_field );
-        
-        $middle_picture_path = image::process(
-            'resize', $record['product_picture_big'], $this -> fields['product_picture_middle']['upload_dir'], 287, 240, array( 'background' ) );
-        db::update( 'product', array( 'product_picture_middle' => $middle_picture_path ),
-            array( $this -> primary_field => $primary_field ) );
-            
-        $small_picture_path = image::process(
-            'resize', $record['product_picture_big'], $this -> fields['product_picture_small']['upload_dir'], 104, 104, array( 'background' ) );
-        db::update( 'product', array( 'product_picture_small' => $small_picture_path ),
-            array( $this -> primary_field => $primary_field ) );
-        
-        image::watermark( $record['product_picture_big'], '', $_SERVER['DOCUMENT_ROOT'] . '/image/watermark.png' );
-        image::watermark( $middle_picture_path, '', $_SERVER['DOCUMENT_ROOT'] . '/image/watermark.png' );
     }
 }

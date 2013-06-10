@@ -156,14 +156,12 @@ class metadata
          */
         'picture' => array(
             'title' => 'Изображения товаров',
-            'class' => 'picture',
             'fields' => array(
                 'picture_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
                 'picture_product' => array( 'title' => 'Товар', 'type' => 'table', 'table' => 'product', 'errors' => 'require' ),
                 'picture_title' => array( 'title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'errors' => 'require' ),
                 'picture_image' => array( 'title' => 'Изображение', 'type' => 'image', 'upload_dir' => 'image', 'errors' => 'require' ),
-                'picture_default' => array( 'title' => 'По умолчанию', 'type' => 'default', 'group' => array( 'picture_product' ) ),
-                'picture_active' => array( 'title' => 'Видимость', 'type' => 'active' ),
+                'picture_default' => array( 'title' => 'По умолчанию', 'type' => 'default', 'show' => 1, 'group' => array( 'picture_product' ) ),
             )
         ),
         
@@ -182,10 +180,15 @@ class metadata
                     array( 'value' => '3', 'title' => 'Спецификация' ),
                     array( 'value' => '4', 'title' => 'Руководство пользователя' ),
                     array( 'value' => '5', 'title' => 'Краткая инструкция по установке' ) ), 'errors' => 'require' ),
-                'file_name' => array( 'title' => 'Файл', 'type' => 'file', 'show' => 1, 'main' => 1, 'upload_dir' => 'file', 'errors' => 'require' ),
-                'file_lang' => array( 'title' => 'Язык', 'type' => 'string' ),
-                'file_date' => array( 'title' => 'Дата', 'type' => 'date' ),
-                'file_size' => array( 'title' => 'Размер', 'type' => 'string' ),
+                'file_title' => array( 'title' => 'Заголовок', 'type' => 'string', 'main' => 1, 'errors' => 'require' ),
+                'file_name' => array( 'title' => 'Файл', 'type' => 'file', 'upload_dir' => 'file', 'errors' => 'require' ),
+                'file_description' => array( 'title' => 'Описание', 'type' => 'text' ),
+                'file_lang' => array( 'title' => 'Язык', 'type' => 'select', 'filter' => 1, 'values' => array(
+                    array( 'value' => 'ru', 'title' => 'Русский' ),
+                    array( 'value' => 'en', 'title' => 'Английский' ),
+                    array( 'value' => 'ml', 'title' => 'Многоязычный' ) ) ),
+                'file_date' => array( 'title' => 'Дата', 'type' => 'date', 'show' => 1 ),
+                'file_size' => array( 'title' => 'Размер', 'type' => 'int', 'show' => 1, 'no_add' => 1, 'no_edit' => 1 ),
             ),
         ),
         

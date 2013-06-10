@@ -1,34 +1,34 @@
 <?php
 class admin_table_property extends admin_table
 {
-    protected function action_copy_save( $redirect = true )
+    protected function action_copy_save($redirect = true)
     {
-        $primary_field = parent::action_copy_save( false );
+        $primary_field = parent::action_copy_save(false);
         
-        $values = db::select_all( 'select * from value where value_property = :value_property',
-            array( 'value_property' => init_string( $this -> primary_field ) ) );
+        $values = db::select_all('select * from property_value where value_property = :value_property',
+            array('value_property' => id()));
         
-        foreach( $values as $value )
-            db::insert( 'value', array( 'value_property' => $primary_field, 'value_title' => $value['value_title'] ) );
+        foreach($values as $value)
+            db::insert('property_value', array('value_property' => $primary_field, 'value_title' => $value['value_title']));
         
-        if ( $redirect )
-            $this -> redirect();
+        if ($redirect)
+            $this->redirect();
         
         return $primary_field;
     }
     
-    protected function action_delete( $primary_field = '', $redirect = true )
+    protected function action_delete($redirect = true)
     {
-        if ( $primary_field === '' )
-            $primary_field = init_string( $this -> primary_field );
+        $record = $this->get_record();
+        $primary_field = $record[$this->primary_field];
         
-        $records_count = db::select( '
-                select count(*) as _count from product_property where property = :property',
-            array( 'property' => $primary_field ) );
+        $records_count = db::select_cell('
+                select count(*) from product_property where property = :property',
+            array('property' => $primary_field));
         
-        if ( $records_count['_count'] )
-            throw new Exception( 'Ошибка. Невозможно удалить запись, так как у нее есть зависимые записи в таблице "Свойства товаров".' );
+        if ($records_count)
+            throw new Exception('Ошибка. Невозможно удалить запись, так как у нее есть зависимые записи в таблице "Свойства товаров".');
         
-        parent::action_delete( $primary_field, $redirect );
+        parent::action_delete($redirect);
     }
 }
