@@ -5,142 +5,41 @@
 		<title><?= h( $this -> meta_title ) ?></title>
 		<meta name="keywords" content="<?= h( $this -> meta_keywords ) ?>"/> 
 		<meta name="description" content="<?= h( $this -> meta_description ) ?>"/> 
-		<link href="/css/style.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" href="/js/gundong.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/js/gundong.css" />
 		<script type="text/javascript" src="/js/jquery.js"></script>
 		<script type="text/javascript" src="/js/jquery.plugin.js"></script>
 		<script type="text/javascript" src="/js/gundong.js"></script>
 		<script type="text/javascript" src="/js/common.js"></script>
-		<style type="text/css">
-			#apDivf {
-				position:absolute;
-				left:160px;
-				top:1px;
-				width:650px;
-				height:70px;
-				z-index:7;
-			}
-		</style>
+<!--[if IE 6]>
+		<script src="/Scripts/PNG.js"></script>
+		<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
 	</head>
 	<body>
-		<div id="top" style="background:url(/Files/images/sysimages/bg.gif) no-repeat center top">
+		<div id="top" style="background:url(/image/sysimages/bg.gif) no-repeat center top">
 			<div id="logo">
-				<a href="/"><img height="92" src="/Files/images/sysimages/logo.jpg" width="140" /></a>
+				<a href="/"><img height="92" src="/image/sysimages/logo.jpg" width="140" /></a>
 			</div>
 			
-			<!-- Меню -->
 			<div id="menu">
-				<ul>
-					<li>
-						<a href="/en/products/" class="over">Products</a>
-						<div class="apDiv1 div">
-							<div class="homepro">
-								<ul>
-									<li style="z-index:999">
-										<a href="/en/products/?id=3"><img src="/Files/images/products/category/w.png" width="170" height="75" /></a><a href="/en/products/?id=3"><span class='span1'>Wireless</span></a>
-										<div class="subsort">
-											<dl>
-												<dd><a href="/en/products/Dualband-Series/">Wireless Dual Band</a></dd>
-												<dd><a href="/en/products/Wireless-Routers-Regular/">150Mbps Wireless N Router</a></dd>
-												<dd><a href="/en/products/300Mbps Wireless N Router/">300Mbps Wireless N Router</a></dd>
-												<dd><a href="/en/Products/Wireless USB Adapters/">Wireless N USB Adapter</a></dd>
-												<dd><a href="/en/products/Wireless-PCI-Adapters/">Wireless N PCI/PCI-E Adapter</a></dd>
-												<dd><a href="/en/products/High-power-Series/">Wireless High Power</a></dd>
-												<dd><a href="/en/products/Outdoor-Series/">Wireless Outdoor</a></dd>
-											</dl>
-										</div>
-									</li>
-									<li style="z-index:998">
-										<a href="/en/products/?id=11"><img src="/Files/images/products/category/a.png" width="170" height="75" /></a><a href="/en/products/?id=11"><span class='span2'>ADSL</span></a>
-										<div class="subsort">
-											<dl>
-												<dd><a href="/en/products/ADSL2+-Modem/">DSL Modem</a></dd>
-												<dd><a href="/en/products/ADSL2+-Wireless-Modem-Router/">DSL Router</a></dd>
-											</dl>
-										</div>
-									</li>
-									<li style="z-index:997">
-										<a href="/en/products/?id=14"><img src="/Files/images/products/category/s.png" width="170" height="75" /></a><a href="/en/products/?id=14"><span class='span3'>Switch</span></a>
-										<div class="subsort">
-											<dl>
-												<dd><a href="/en/products/Unmanagement-Switch/">Unmanagement Switch</a></dd>
-												<dd><a href="/en/products/Web-Smart-Switch/">Web Smart Switch</a></dd>
-												<dd><a href="/en/products/SNMP-Switch/">SNMP Switch</a></dd>
-												<dd><a href="/en/products/PoE-Switch/">PoE Switch</a></dd>
-											</dl>
-										</div>
-									</li>
-									<li style="z-index:996">
-										<a href="/en/products/Wired-Adapter/"><img src="/Files/images/products/category/wa.png" width="170" height="75" /></a><a href="/en/products/Wired-Adapter/"><span class='span4 span_none'>Network Adapter</span></a>
-									</li>
-									<li style="z-index:995">
-										<a href="/en/products/Discontinued/"><img src="/Files/images/products/category/d.png" width="170" height="75" /></a><a href="/en/products/Discontinued/"><span class='span5 span_none'>Discontinued</span></a>
-									</li>
-								</ul>
-								<div class="clear"></div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<a href="/en/FAQ/" class="over">Support</a>
-						<div class="apDiv2 div">
-							<ul>
-								<li><a href="/en/FAQ/">FAQ</a></li>
-								<li><a href="/en/Downloads/">Downloads</a></li>
-								<li><a href="/en/Video/">Installation Video</a></li>
-								<li><a href="/en/Catalog/">Product Catalog</a></li>
-								<li><a href="/en/Support/838.html">RMA Request Form</a></li>
-								<li><a href="/en/Support/Universal Setup CD.html">Universal Setup CD</a></li>
-							</ul>
-						</div>
-					</li>
-					<li>
-						<a href="/en/Where-to-buy/" class="over">Partners</a>
-						<div class="apDiv3 div">
-							<ul>
-								<li><a href="/en/Where-to-buy/">Where to buy</a></li>
-								<li><a href="/en/partners/Brand_Activities.html">Brand Activities</a></li>
-								<li><a href="/en/joinus.html">Join us</a></li>
-							</ul>
-						</div>
-					</li>
-					<li>
-						<a href="/en/about/" class="over">About us</a>
-						<div class="apDiv4 div">
-							<ul>
-								<li><a href='/en/about/index.html'>Company profile</a></li>
-								<li><a href='/en/about/Milestone.html'>Milestone</a></li>
-								<li><a href='/en/about/Certifications.html'>Certifications</a></li>
-								<li><a href='/en/about/Family.html'>Our Family</a></li>
-								<li><a href='/en/about/The Upcoming Exhibitions.html'>The Upcoming Exhibitions</a></li>
-								<li><a href='/en/news/'>News</a></li>
-								<li><a href='/en/about/contactus.html'>Contact us</a></li>
-							</ul>
-						</div>
-					</li>
-				</ul>
+<?= $this->menu ?>
 			</div>
 			
 			<div id="top_right">
-			
-				<!-- Контактная информация -->
-				<div id="language">
-					<a class="a_blue_12b" href="/en/Global/">Global</a>
-				</div>
 				<div class="floatright" style="width: 60px">
-					<a href="/en/about/contactus.html">Contact us</a>
+					<a href="/about/contactus">Контакты</a>
 				</div>
 				<div class="clear">&nbsp;</div>
 				
-				<!-- Форма поиска -->
 				<div id="search">
-					<form action="/en/search/" method="get" name="searchform">
+					<form action="/search" method="get" name="searchform">
 						<div class="floatleft">
 							<div id="searchDiv">&nbsp;</div>
 							<input id="keyword" name="keyword" type="text" />
 						</div>
 						<div class="floatright">
-							<input name="" src="/Files/images/sysimages/8.jpg" style="margin: 2px 2px 0px 0px" type="image" />
+							<input name="" src="/image/sysimages/8.jpg" style="margin: 2px 2px 0px 0px" type="image" />
 						</div>
 					</form>
 				</div>
@@ -148,35 +47,106 @@
 			<br />
 		</div>
 		
-		<!-- Баннер на главной -->
 		<div id="homebannerbg">
-			<div id="homebanner">
-				<div id="imgPlay">
-					<div class="bannerpic">
-						<ul class=imgs id=actor>
-							<li><a href='/en/products/Wireless-Routers-Regular/65.html'><IMG src="/Files/images/banner/04.jpg" width="1000" height="475"></a></li>
-							<li><a href='/en/products/300Mbps%20Wireles%20N%20Router/42.html'><IMG src="/Files/images/banner/05.jpg" width="1000" height="475"></a></li>
-							<li><a href='/en/products/Dualband-Series/79.html'><IMG src="/Files/images/banner/03.jpg" width="1000" height="475"></a></li>
-							<li><a href='/en/products/Outdoor-Series/86.html'><IMG src="/Files/images/banner/01.jpg" width="1000" height="475"></a></li>
-							<li><a href='/en/products/PoE-Switch/94.html'><IMG src="/Files/images/banner/02.jpg" width="1000" height="475"></a></li>
-						</ul>
-					</div>
-					<div class=num>
-						<p class=lc></p>
-						<p class=mc></p>
-						<p class=rc></p>
-					</div>
-					<div class=num id=numInner></div>
-					<div class=prev>></div>
-					<div class=next><</div>
-				</div>
-			</div>
+<?= $this->teaser ?>
 		</div>
 		
 		<div id="homecontent"> 
-		
 			<!-- Лидеры продаж -->
-
+			<div id="hotbuys">
+				<div>
+				  <div class="floatleft"><img src="/image/sysimages/1.png" /></div>
+				  <div class="floatright"><a href="/products/hotbuys/"><img src="/image/sysimages/16.jpg" width="41" height="15" /></a></div>
+				  <div class="clear"></div>
+				</div>
+				
+				<div class="recommended">
+				  <div class="recommended_c">
+					<div id="eliteProduct">
+						<div class="products" id="eliteProduct1">
+							<span class="hotproducts">
+							  <span class="floatleft"><a href="/products/Wireless-Routers-Regular/53.html"><img src="/upload/image/c3_b.jpg/c/126/115" width="126" height="115" /></a></span>
+							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/products/Wireless-Routers-Regular/53.html" class="a_blue_12b">150Mbps Wireless N Router</a></span><br />
+							   <br />
+								<br />
+								<p align="right"><a href="/products/Wireless-Routers-Regular/53.html"><img src="/image/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
+							  </span>
+							</span>
+						  </div>
+						  <div class="products" id="eliteProduct2">
+							<span class="hotproducts">
+							  <span class="floatleft"><a href="/products/Wireless-Routers-Regular/54.html"><img src="/upload/image/c3_b.jpg/c/126/115" width="126" height="115" /></a></span>
+							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/products/Wireless-Routers-Regular/54.html" class="a_blue_12b">150Mbps Wireless N Router, Detachable Antenna</a></span><br />
+							   <br />
+								<br />
+								<p align="right"><a href="/products/Wireless-Routers-Regular/54.html"><img src="/image/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
+							  </span>
+							</span>
+						  </div>
+						  <div class="products" id="eliteProduct3">
+							<span class="hotproducts">
+							  <span class="floatleft"><a href="/products/300Mbps Wireles N Router/66.html"><img src="/upload/image/c3_b.jpg/c/126/115" width="126" height="115" /></a></span>
+							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/products/300Mbps Wireles N Router/66.html" class="a_blue_12b">300Mbps Wireless N Router</a></span><br />
+							   <br />
+								<br />
+								<p align="right"><a href="/products/300Mbps Wireles N Router/66.html"><img src="/image/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
+							  </span>
+							</span>
+						  </div>
+						  <div class="products" id="eliteProduct4">
+							<span class="hotproducts">
+							  <span class="floatleft"><a href="/Products/Wireless USB Adapters/72.html"><img src="/upload/image/c3_b.jpg/c/126/115" width="126" height="115" /></a></span>
+							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/Products/Wireless USB Adapters/72.html" class="a_blue_12b">300Mbps Wireless N USB Adapter</a></span><br />
+							   <br />
+								<br />
+								<p align="right"><a href="/Products/Wireless USB Adapters/72.html"><img src="/image/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
+							  </span>
+							</span>
+						  </div>
+						  <div class="products" id="eliteProduct5">
+							<span class="hotproducts">
+							  <span class="floatleft"><a href="/Products/Wireless USB Adapters/74.html"><img src="/upload/image/c3_b.jpg/c/126/115" width="126" height="115" /></a></span>
+							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/Products/Wireless USB Adapters/74.html" class="a_blue_12b">150Mbps Wireless N NANO USB Adapter</a></span><br />
+							   <br />
+								<br />
+								<p align="right"><a href="/Products/Wireless USB Adapters/74.html"><img src="/image/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
+							  </span>
+							</span>
+						  </div>
+						  <div class="products" id="eliteProduct6">
+							<span class="hotproducts">
+							  <span class="floatleft"><a href="/products/High-power-Series/82.html"><img src="/upload/image/c3_b.jpg/c/126/115" width="126" height="115" /></a></span>
+							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/products/High-power-Series/82.html" class="a_blue_12b">150Mbps Wireless N High Power USB Adapter, Detachable Antenna</a></span><br />
+							   <br />
+								<br />
+								<p align="right"><a href="/products/High-power-Series/82.html"><img src="/image/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
+							  </span>
+							</span>
+						  </div>
+						  <div class="products" id="eliteProduct7">
+							<span class="hotproducts">
+							  <span class="floatleft"><a href="/products/Unmanagement-Switch/115.html"><img src="/upload/image/c3_b.jpg/c/126/115" width="126" height="115" /></a></span>
+							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/products/Unmanagement-Switch/115.html" class="a_blue_12b">8 Port Fast Ethernet Switch</a></span><br />
+							   <br />
+								<br />
+								<p align="right"><a href="/products/Unmanagement-Switch/115.html"><img src="/image/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
+							  </span>
+							</span>
+						  </div>
+						  <div class="products" id="eliteProduct8">
+							<span class="hotproducts">
+							  <span class="floatleft"><a href="/products/Unmanagement-Switch/116.html"><img src="/upload/image/c3_b.jpg/c/126/115" width="126" height="115" /></a></span>
+							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/products/Unmanagement-Switch/116.html" class="a_blue_12b">5 Port Fast Ethernet Switch</a></span><br />
+							   <br />
+								<br />
+								<p align="right"><a href="/products/Unmanagement-Switch/116.html"><img src="/image/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
+							  </span>
+							</span>
+						  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
 			<script type="text/javascript">
 				var oItems2=document.getElementById("eliteProduct");
 				var eliteProduct_k=oItems2.getElementsByTagName("div").length;
@@ -188,12 +158,12 @@
 					eliteProduct_i+=a;
 					if (eliteProduct_i>eliteProduct_k){eliteProduct_i=1;}
 					if (eliteProduct_i==0){eliteProduct_i=eliteProduct_k;}
-						 for (var j=1; j<=eliteProduct_k; j++){
-						 document.getElementById("eliteProduct"+j).style.display="none";
+						for (var j=1; j<=eliteProduct_k; j++){
+							document.getElementById("eliteProduct"+j).style.display="none";
+						}
+						document.getElementById("eliteProduct"+eliteProduct_i).style.display="block";
 					}
-						 document.getElementById("eliteProduct"+eliteProduct_i).style.display="block";
-					} 
-						
+					
 					document.getElementById("eliteProduct").onmouseover = function(event){
 						 event = event ? event : window.event
 						 var obj = event.srcElement ? event.srcElement : event.target;
@@ -207,126 +177,8 @@
 					}, 3000);
 				}
 			</script>
-			
-			<div id="hotbuys">
-				<div>
-				  <div class="floatleft"><img src="/Files/images/sysimages/1.png" /></div>
-				  <div class="floatright"><a href="/en/products/hotbuys/"><img src="/Files/images/sysimages/16.jpg" width="41" height="15" /></a></div>
-				  <div class="clear"></div>
-				</div>
-				
-				<div class="recommended">
-				  <div class="recommended_c">
-					<div id="eliteProduct">
-						<div class="products" id="eliteProduct1">
-							<span class="hotproducts">
-							  <span class="floatleft"><a href="/en/products/Wireless-Routers-Regular/53.html"><img src="/Files/images/products/images/WF2411/HOTBUY.png" width="126" height="115" /></a></span>
-							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/en/products/Wireless-Routers-Regular/53.html" class="a_blue_12b">150Mbps Wireless N Router</a></span><br />
-							   <br />
-								<br />
-								<p align="right"><a href="/en/products/Wireless-Routers-Regular/53.html"><img src="/Files/images/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
-							  </span>
-							</span>
-						  </div>
-						  <div class="products" id="eliteProduct2">
-							<span class="hotproducts">
-							  <span class="floatleft"><a href="/en/products/Wireless-Routers-Regular/54.html"><img src="/Files/images/products/images/WF2411/HOTBUY.png" width="126" height="115" /></a></span>
-							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/en/products/Wireless-Routers-Regular/54.html" class="a_blue_12b">150Mbps Wireless N Router, Detachable Antenna</a></span><br />
-							   <br />
-								<br />
-								<p align="right"><a href="/en/products/Wireless-Routers-Regular/54.html"><img src="/Files/images/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
-							  </span>
-							</span>
-						  </div>
-						  <div class="products" id="eliteProduct3">
-							<span class="hotproducts">
-							  <span class="floatleft"><a href="/en/products/300Mbps Wireles N Router/66.html"><img src="/Files/images/products/images/WF2419/HOTBUY.png" width="126" height="115" /></a></span>
-							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/en/products/300Mbps Wireles N Router/66.html" class="a_blue_12b">300Mbps Wireless N Router</a></span><br />
-							   <br />
-								<br />
-								<p align="right"><a href="/en/products/300Mbps Wireles N Router/66.html"><img src="/Files/images/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
-							  </span>
-							</span>
-						  </div>
-						  <div class="products" id="eliteProduct4">
-							<span class="hotproducts">
-							  <span class="floatleft"><a href="/en/Products/Wireless USB Adapters/72.html"><img src="/Files/images/products/images/WF-2109/HOTBUY.png" width="126" height="115" /></a></span>
-							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/en/Products/Wireless USB Adapters/72.html" class="a_blue_12b">300Mbps Wireless N USB Adapter</a></span><br />
-							   <br />
-								<br />
-								<p align="right"><a href="/en/Products/Wireless USB Adapters/72.html"><img src="/Files/images/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
-							  </span>
-							</span>
-						  </div>
-						  <div class="products" id="eliteProduct5">
-							<span class="hotproducts">
-							  <span class="floatleft"><a href="/en/Products/Wireless USB Adapters/74.html"><img src="/Files/images/products/images/WF2120/HOTBUY.png" width="126" height="115" /></a></span>
-							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/en/Products/Wireless USB Adapters/74.html" class="a_blue_12b">150Mbps Wireless N NANO USB Adapter</a></span><br />
-							   <br />
-								<br />
-								<p align="right"><a href="/en/Products/Wireless USB Adapters/74.html"><img src="/Files/images/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
-							  </span>
-							</span>
-						  </div>
-						  <div class="products" id="eliteProduct6">
-							<span class="hotproducts">
-							  <span class="floatleft"><a href="/en/products/High-power-Series/82.html"><img src="/Files/images/products/images/WF2503/HOTBUY.png" width="126" height="115" /></a></span>
-							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/en/products/High-power-Series/82.html" class="a_blue_12b">150Mbps Wireless N High Power USB Adapter, Detachable Antenna</a></span><br />
-							   <br />
-								<br />
-								<p align="right"><a href="/en/products/High-power-Series/82.html"><img src="/Files/images/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
-							  </span>
-							</span>
-						  </div>
-						  <div class="products" id="eliteProduct7">
-							<span class="hotproducts">
-							  <span class="floatleft"><a href="/en/products/Unmanagement-Switch/115.html"><img src="/Files/images/products/images/ST3108S/HOTBUY1.png" width="126" height="115" /></a></span>
-							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/en/products/Unmanagement-Switch/115.html" class="a_blue_12b">8 Port Fast Ethernet Switch</a></span><br />
-							   <br />
-								<br />
-								<p align="right"><a href="/en/products/Unmanagement-Switch/115.html"><img src="/Files/images/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
-							  </span>
-							</span>
-						  </div>
-						  <div class="products" id="eliteProduct8">
-							<span class="hotproducts">
-							  <span class="floatleft"><a href="/en/products/Unmanagement-Switch/116.html"><img src="/Files/images/products/images/ST3015S/HOTBUY1.png" width="126" height="115" /></a></span>
-							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/en/products/Unmanagement-Switch/116.html" class="a_blue_12b">5 Port Fast Ethernet Switch</a></span><br />
-							   <br />
-								<br />
-								<p align="right"><a href="/en/products/Unmanagement-Switch/116.html"><img src="/Files/images/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
-							  </span>
-							</span>
-						  </div>
-					</div>
-				  </div>
-				</div>
-			</div>
-
-			<!-- Новости -->
-			<div id="homenews">
-				<div>
-					<div class="floatleft"><img src="/Files/images/sysimages/2.png" hspace="5" /></div>
-					<div class="floatright"><a href="/en/news/"><img src="/Files/images/sysimages/16.jpg" width="41" height="15" /></a></div>
-					<div class="clear"></div>
-				</div>
-				<div id="homenews_content">
-					<div class="homenews_left"><img src="/Files/images/sysimages/21.jpg" width="103" height="104" hspace="6" vspace="6" /></div>
-					<div class="homenews_right">
-						<ul>
-							<li ifhotnews="0"><a href='/en/news/847.html'>Netis First Appearance at Computex 2013, Taipei</a>&nbsp;&nbsp;<span><img src="/Files/images/sysimages/new.gif" /></span></li>
-							<li ifhotnews="1"><a href='/en/news/846.html'>Netis, Makes Its First Appearance at Czech FTTx FORUM 2013</a>&nbsp;&nbsp;<span><img src="/Files/images/sysimages/new.gif" /></span></li>
-							<li ifhotnews="1"><a href='/en/news/844.html'>netis 2.4GHz wireless products have been divided into Class 1 equipment</a>&nbsp;&nbsp;<span><img src="/Files/images/sysimages/new.gif" /></span></li>
-							<li ifhotnews="1"><a href='/en/news/835.html'>China Sourcing Fair--2013,in HongKong</a>&nbsp;&nbsp;<span><img src="/Files/images/sysimages/new.gif" /></span></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			
-			<!-- Баннер в футере -->
-			<div id="recpro">
-				<a href="en/news/847.html" target="_blank"><img alt="" src="/Files/images/sysimages/q.jpg" style="border-bottom: 0px solid; border-left: 0px solid; border-top: 0px solid; border-right: 0px solid" /></a>
-			</div>
+<?= $this->news ?>
+<?= $this->banner ?>
 		</div>
 		
 		<div class="clear">&nbsp;</div>
@@ -335,15 +187,15 @@
 			
 			<!-- Ссылки на соц. сети -->
 			<div class="floatleft">
-				<img height="32" src="/Files/images/sysimages/26.jpg" width="25" />
-				<img height="32" hspace="5" src="/Files/images/sysimages/27.jpg" width="25" />
-				<img height="32" src="/Files/images/sysimages/28.jpg" width="25" />
-				<img height="32" hspace="5" src="/Files/images/sysimages/29.jpg" width="25" />
+				<img height="32" src="/image/sysimages/26.jpg" width="25" />
+				<img height="32" hspace="5" src="/image/sysimages/27.jpg" width="25" />
+				<img height="32" src="/image/sysimages/28.jpg" width="25" />
+				<img height="32" hspace="5" src="/image/sysimages/29.jpg" width="25" />
 			</div>
 			
 			<!-- Меню в футере -->
 			<div id="bottommenu">
-				<a href="/en/Downloads/">Download</a> | <a href="/en/joinus.html">Join us</a> | <a href="mailto:support@netis-systems.com">Technical Support</a>
+				<a href="/Downloads/">Download</a> | <a href="/joinus.html">Join us</a> | <a href="mailto:support@netis-systems.com">Technical Support</a>
 			</div>
 			
 			<!-- Копирайт -->

@@ -347,7 +347,7 @@ class admin_table extends admin
                     $insert_fields[$field_name] = field::set_field(init_string($field_name), $field_desc);
             }
         }
-        
+       
         if ($this->order_field)
         {
             list($group_conds, $group_binds) =

@@ -41,7 +41,6 @@ class metadata
                 'menu_page' => array('title' => 'Раздел', 'type' => 'table', 'table' => 'page', 'show' => 1),
                 'menu_url' => array('title' => 'URL', 'type' => 'string', 'show' => 1),
                 'menu_image' => array('title' => 'Изображение', 'type' => 'image', 'upload_dir' => 'menu'),
-                'menu_color' => array('title' => 'Цвет', 'type' => 'string'),
                 'menu_order' => array('title' => 'Порядок', 'type' => 'order', 'group' => array('menu_parent')),
                 'menu_active' => array('title' => 'Видимость', 'type' => 'active'),
             ),
@@ -61,10 +60,10 @@ class metadata
         ),
         
         /**
-         * Таблица "Тизеры на главной"
+         * Таблица "Тизеры"
          */
         'teaser' => array(
-            'title' => 'Тизеры на главной',
+            'title' => 'Тизеры',
             'fields' => array(
                 'teaser_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
                 'teaser_title' => array('title' => 'Заголовок', 'type' => 'string', 'show' => 1, 'main' => 1, 'errors' => 'require'),
@@ -76,10 +75,10 @@ class metadata
         ),
         
         /**
-         * Таблица "Баннеры на главной"
+         * Таблица "Баннеры"
          */
         'banner' => array(
-            'title' => 'Баннеры на главной',
+            'title' => 'Баннеры',
             'fields' => array(
                 'banner_id' => array('title' => 'Идентификатор', 'type' => 'pk'),
                 'banner_title' => array('title' => 'Заголовок', 'type' => 'string', 'show' => 1, 'main' => 1, 'errors' => 'require'),

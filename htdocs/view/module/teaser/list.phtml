@@ -1,0 +1,19 @@
+			<div id="homebanner">
+				<div id="imgPlay">
+					<div class="bannerpic">
+						<ul class=imgs id=actor>
+<? foreach ($this->teaser_list as $teaser_item) { ?>
+							<li><a href="<?= $teaser_item->get_teaser_url() ?>"><img src="<?= $teaser_item->get_teaser_image() ?>" width="1000" height="475"></a></li>
+<? } ?>
+						</ul>
+					</div>
+					<div class=num>
+						<p class=lc></p>
+						<p class=mc></p>
+						<p class=rc></p>
+					</div>
+					<div class=num id=numInner></div>
+					<div class=prev>></div>
+					<div class=next><</div>
+				</div>
+			</div>
