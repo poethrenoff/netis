@@ -1,32 +1,60 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><?= h( $this -> meta_title ) ?></title>
 		<meta name="keywords" content="<?= h( $this -> meta_keywords ) ?>"/> 
 		<meta name="description" content="<?= h( $this -> meta_description ) ?>"/> 
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" href="/css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+		<script type="text/javascript" src="/js/jquery.js"></script>
+		<script type="text/javascript" src="/js/common.js"></script>
+<!--[if IE 6]>
+		<script src="/Scripts/PNG.js"></script>
+		<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
 	</head>
 	<body>
-		<table class="main" border="1">
-			<tr>
-				<td class="header" colspan="2">
-<?= block( 'block/header' ) ?> 
-				</td>
-			</tr>
-			<tr>
-				<td class="menu">
-<?= $this -> menu ?> 
-				</td>
-				<td class="content">
-<?= $this -> content ?> 
-				</td>
-			</tr>
-			<tr>
-				<td class="footer" colspan="2">
-<?= block( 'block/footer' ) ?> 
-				</td>
-			</tr>
-		</table>
+		<div id="top">
+			<div id="logo">
+				<a href="/"><img height="92" src="/image/sysimages/logo.jpg" width="140" /></a>
+			</div>
+			
+			<div id="menu">
+<?= $this->menu ?>
+			</div>
+			
+			<div id="top_right">
+<?= $this->contactus ?>
+				<div class="clear">&nbsp;</div>
+<?= $this->search ?>
+			</div>
+			<br />
+		</div>
+		
+		<div id="bannerbg">
+<?= $this->banner ?>
+		</div>
+		
+		<div id="page_up"></div>
+		<div id="page_mid">
+<?= $this->location ?>
+			<div id="page_content">
+				<div id="page_content_left">
+<?= $this->left ?>
+				</div>
+				<div id="page_content_right">
+<?= $this->content ?>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div id="page_down"></div>
+		<div class="clear">&nbsp;</div>
+		
+		<div id="bottom">
+<?= $this->social ?>
+<?= $this->footer ?>
+<?= $this->copyright ?>
+		</div>
 	</body>
 </html>

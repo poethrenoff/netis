@@ -127,8 +127,8 @@ class metadata
                 'product_active' => array( 'title' => 'Видимость', 'type' => 'active' ),
             ),
             'links' => array(
-                'picture' => array( 'title' => 'Картинки', 'table' => 'picture', 'field' => 'picture_product', 'ondelete' => 'cascade' ),
-                'file' => array( 'title' => 'Файлы',  'table' => 'file', 'field' => 'file_product', 'ondelete' => 'cascade' ),
+                'picture' => array( 'title' => 'Картинки', 'table' => 'product_picture', 'field' => 'picture_product', 'ondelete' => 'cascade' ),
+                'file' => array( 'title' => 'Файлы',  'table' => 'product_file', 'field' => 'file_product', 'ondelete' => 'cascade' ),
             ),
             'relations' => array(
                 'marker' => array( 'secondary_table' => 'marker', 'relation_table' => 'product_marker',
@@ -153,13 +153,12 @@ class metadata
         /**
          * Таблица "Изображения товаров"
          */
-        'picture' => array(
+        'product_picture' => array(
             'title' => 'Изображения товаров',
             'fields' => array(
                 'picture_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
                 'picture_product' => array( 'title' => 'Товар', 'type' => 'table', 'table' => 'product', 'errors' => 'require' ),
-                'picture_title' => array( 'title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'errors' => 'require' ),
-                'picture_image' => array( 'title' => 'Изображение', 'type' => 'image', 'upload_dir' => 'image', 'errors' => 'require' ),
+                'picture_image' => array( 'title' => 'Изображение', 'type' => 'image', 'upload_dir' => 'image', 'main' => 1, 'errors' => 'require' ),
                 'picture_default' => array( 'title' => 'По умолчанию', 'type' => 'default', 'show' => 1, 'group' => array( 'picture_product' ) ),
             )
         ),
@@ -167,7 +166,7 @@ class metadata
         /**
          * Таблица "Файлы для скачивания"
          */
-        'file' => array(
+        'product_file' => array(
             'title' => 'Файлы для скачивания',
             'class' => 'file',
             'fields' => array(

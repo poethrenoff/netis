@@ -1,0 +1,12 @@
+			<div id="location">
+				Путь : 
+<? $location_index = 1; $location_count = count($this->menu_location); ?>
+<? foreach ($this->menu_location as $location_item) { ?>
+<? 		if ($location_index < $location_count) { ?>
+					<?= $location_item->get_menu_title() ?> / 
+<?		} else { ?>
+					<span class="txt_blue_12"><?= $location_item->get_menu_title() ?></span>
+<?		} ?>
+<? 		$location_index++; ?>
+<? } ?>
+			</div>

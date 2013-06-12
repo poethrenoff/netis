@@ -5,10 +5,28 @@ class admin_table_product extends admin_table
     {
         $primary_field = parent::action_copy_save(false);
         
+        // Копируем изображения товара
+        $product_picturies = db::select_all('
+                select * from product_picture where picture_product = :picture_product',
+            array('picture_product' => id()));
+        foreach($product_picturies as $product_picture) {
+            unset($product_picture['picture_id']);
+            db::insert('product_picture', array('picture_product' => $primary_field) + $product_picture);
+        }
+        
+        // Копируем файлы товара
+        $product_files = db::select_all('
+                select * from product_file where file_product = :file_product',
+            array('file_product' => id()));
+        foreach($product_files as $product_file) {
+            unset($product_file['file_id']);
+            db::insert('product_file', array('file_product' => $primary_field) + $product_file);
+        }
+        
+        // Копируем свойства товара
         $product_properties = db::select_all('
                 select property, value from product_property where product = :product',
             array('product' => id()));
-        
         foreach($product_properties as $product_property)
             db::insert('product_property', array('product' => $primary_field) + $product_property);
         

@@ -1,3 +1,11 @@
-<h3><?= Date::get($this->get_news_date(), 'd.m.Y') ?> - <?= h($this->get_news_title()) ?></h3>
+					<div id="page_content_title">Новости</div>
+					<div class="content_ge"></div>
+					<div class="content">
+						<div class="newsdeszi"><span><?= h($this->get_news_title()) ?></span><br />
+							Дата: <?= Date::get($this->get_news_date(), 'd.m.Y') ?><hr />
+							<div class="clear"></div>
+						</div>
+						<div class="newsdes">
 <?= $this->get_news_content() ?>
-<a href="<?= url_for(array( 'controller' => 'news')) ?>">К списку новостей</a>
+						</div>
+					</div>

@@ -1,47 +1,41 @@
 				<ul>
 <? $menu_index = 1; ?>
-<? foreach ($this->menu_tree as $menu_parent) { ?>
-<? 		if ($menu_parent->_depth == 0) { ?>
+<? foreach ($this->get_children() as $menu_item) { ?>
 					<li>
-						<a href="<?= $menu_parent->get_menu_url() ?>" class="over"><?= h($menu_parent->get_menu_title()) ?></a>
+						<a href="<?= $menu_item->get_menu_url() ?>" class="over"><?= h($menu_item->get_menu_title()) ?></a>
 						<div class="apDiv<?= $menu_index ?> div">
 <?			if ($menu_index == 1) { ?>
 							<div class="homepro">
 								<ul>
 <? 				$submenu_index = 1; ?>
-<? 				foreach ($this->menu_tree as $menu_item) { ?>
-<? 					if ($menu_item->get_menu_parent() == $menu_parent->get_menu_id()) { ?>
+<? 				foreach ($menu_item->get_children() as $submenu_item) { ?>
 									<li style="z-index:<?= 1000 - $submenu_index ?>">
-										<a href="<?= $menu_item->get_menu_url() ?>"><img src="<?= $menu_item->get_menu_image() ?>" width="170" height="75" /></a><a href="<?= $menu_item->get_menu_url() ?>"><span class='span<?= $submenu_index ?>'><?= h($menu_item->get_menu_title()) ?></span></a>
-<?						if ($menu_item->_has_children) { ?>
+										<a href="<?= $submenu_item->get_menu_url() ?>"><img src="<?= $submenu_item->get_menu_image() ?>" width="170" height="75" /></a><a href="<?= $submenu_item->get_menu_url() ?>"><span class='span<?= $submenu_index ?>'><?= h($submenu_item->get_menu_title()) ?></span></a>
+<?					if ($submenu_item->has_children()) { ?>
 										<div class="subsort">
 											<dl>
-<? 							foreach ($this->menu_tree as $menu_subitem) { ?>
-<?		 						if ($menu_subitem->get_menu_parent() == $menu_item->get_menu_id()) { ?>
-												<dd><a href="<?= $menu_subitem->get_menu_url() ?>"><?= h($menu_subitem->get_menu_title()) ?></a></dd>
-<?		 						} ?>
-<? 							} ?>
+<? 						foreach ($submenu_item->get_children() as $subsubmenu_item) { ?>
+												<dd><a href="<?= $subsubmenu_item->get_menu_url() ?>"><?= h($subsubmenu_item->get_menu_title()) ?></a></dd>
+<? 						} ?>
 											</dl>
 										</div>
-<?						} ?>
+<?					} ?>
 									</li>
-<? 						$submenu_index++; ?>
-<? 					} ?>
+<? 					$submenu_index++; ?>
 <? 				} ?>
 								</ul>
 								<div class="clear"></div>
 							</div>
 <?			} else { ?>
 							<ul>
-<? 				foreach ($this->menu_tree as $menu_item) { ?>
-<? 					if ($menu_item->get_menu_parent() == $menu_parent->get_menu_id()) { ?>
-								<li><a href="<?= $menu_item->get_menu_url() ?>"><?= h($menu_item->get_menu_title()) ?></a></li>
-<? 					} ?>
+<? 				foreach ($menu_item->get_children() as $submenu_item) { ?>
+								<li><a href="<?= $submenu_item->get_menu_url() ?>"><?= h($submenu_item->get_menu_title()) ?></a></li>
 <? 				} ?>
 							</ul>
 <?			} ?>
+								
 						</div>
 					</li>
 <? 			$menu_index++; ?>
-<? 		} ?>
 <? } ?>
+				</ul>

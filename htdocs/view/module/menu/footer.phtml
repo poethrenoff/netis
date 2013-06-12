@@ -1,0 +1,7 @@
+			<div id="bottommenu">
+<? $menu_index = 1; $children_count = $this->children_count(); ?>
+<? foreach ($this->get_children() as $menu_item) { ?>
+				<a href="<?= $menu_item->get_menu_url() ?>"><?= h($menu_item->get_menu_title()) ?></a><? if ($menu_index < $children_count) { ?> | <? } ?> 
+<? 		$menu_index++; ?>
+<? } ?>
+			</div>

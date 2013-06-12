@@ -10,6 +10,7 @@
 		<script type="text/javascript" src="/js/jquery.js"></script>
 		<script type="text/javascript" src="/js/jquery.plugin.js"></script>
 		<script type="text/javascript" src="/js/gundong.js"></script>
+		<script type="text/javascript" src="/js/hotbuys.js"></script>
 		<script type="text/javascript" src="/js/common.js"></script>
 <!--[if IE 6]>
 		<script src="/Scripts/PNG.js"></script>
@@ -27,22 +28,9 @@
 			</div>
 			
 			<div id="top_right">
-				<div class="floatright" style="width: 60px">
-					<a href="/about/contactus">Контакты</a>
-				</div>
+<?= $this->contactus ?>
 				<div class="clear">&nbsp;</div>
-				
-				<div id="search">
-					<form action="/search" method="get" name="searchform">
-						<div class="floatleft">
-							<div id="searchDiv">&nbsp;</div>
-							<input id="keyword" name="keyword" type="text" />
-						</div>
-						<div class="floatright">
-							<input name="" src="/image/sysimages/8.jpg" style="margin: 2px 2px 0px 0px" type="image" />
-						</div>
-					</form>
-				</div>
+<?= $this->search ?>
 			</div>
 			<br />
 		</div>
@@ -52,156 +40,16 @@
 		</div>
 		
 		<div id="homecontent"> 
-			<!-- Лидеры продаж -->
-			<div id="hotbuys">
-				<div>
-				  <div class="floatleft"><img src="/image/sysimages/1.png" /></div>
-				  <div class="floatright"><a href="/products/hotbuys/"><img src="/image/sysimages/16.jpg" width="41" height="15" /></a></div>
-				  <div class="clear"></div>
-				</div>
-				
-				<div class="recommended">
-				  <div class="recommended_c">
-					<div id="eliteProduct">
-						<div class="products" id="eliteProduct1">
-							<span class="hotproducts">
-							  <span class="floatleft"><a href="/products/Wireless-Routers-Regular/53.html"><img src="/upload/image/c3_b.jpg/c/126/115" width="126" height="115" /></a></span>
-							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/products/Wireless-Routers-Regular/53.html" class="a_blue_12b">150Mbps Wireless N Router</a></span><br />
-							   <br />
-								<br />
-								<p align="right"><a href="/products/Wireless-Routers-Regular/53.html"><img src="/image/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
-							  </span>
-							</span>
-						  </div>
-						  <div class="products" id="eliteProduct2">
-							<span class="hotproducts">
-							  <span class="floatleft"><a href="/products/Wireless-Routers-Regular/54.html"><img src="/upload/image/c3_b.jpg/c/126/115" width="126" height="115" /></a></span>
-							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/products/Wireless-Routers-Regular/54.html" class="a_blue_12b">150Mbps Wireless N Router, Detachable Antenna</a></span><br />
-							   <br />
-								<br />
-								<p align="right"><a href="/products/Wireless-Routers-Regular/54.html"><img src="/image/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
-							  </span>
-							</span>
-						  </div>
-						  <div class="products" id="eliteProduct3">
-							<span class="hotproducts">
-							  <span class="floatleft"><a href="/products/300Mbps Wireles N Router/66.html"><img src="/upload/image/c3_b.jpg/c/126/115" width="126" height="115" /></a></span>
-							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/products/300Mbps Wireles N Router/66.html" class="a_blue_12b">300Mbps Wireless N Router</a></span><br />
-							   <br />
-								<br />
-								<p align="right"><a href="/products/300Mbps Wireles N Router/66.html"><img src="/image/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
-							  </span>
-							</span>
-						  </div>
-						  <div class="products" id="eliteProduct4">
-							<span class="hotproducts">
-							  <span class="floatleft"><a href="/Products/Wireless USB Adapters/72.html"><img src="/upload/image/c3_b.jpg/c/126/115" width="126" height="115" /></a></span>
-							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/Products/Wireless USB Adapters/72.html" class="a_blue_12b">300Mbps Wireless N USB Adapter</a></span><br />
-							   <br />
-								<br />
-								<p align="right"><a href="/Products/Wireless USB Adapters/72.html"><img src="/image/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
-							  </span>
-							</span>
-						  </div>
-						  <div class="products" id="eliteProduct5">
-							<span class="hotproducts">
-							  <span class="floatleft"><a href="/Products/Wireless USB Adapters/74.html"><img src="/upload/image/c3_b.jpg/c/126/115" width="126" height="115" /></a></span>
-							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/Products/Wireless USB Adapters/74.html" class="a_blue_12b">150Mbps Wireless N NANO USB Adapter</a></span><br />
-							   <br />
-								<br />
-								<p align="right"><a href="/Products/Wireless USB Adapters/74.html"><img src="/image/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
-							  </span>
-							</span>
-						  </div>
-						  <div class="products" id="eliteProduct6">
-							<span class="hotproducts">
-							  <span class="floatleft"><a href="/products/High-power-Series/82.html"><img src="/upload/image/c3_b.jpg/c/126/115" width="126" height="115" /></a></span>
-							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/products/High-power-Series/82.html" class="a_blue_12b">150Mbps Wireless N High Power USB Adapter, Detachable Antenna</a></span><br />
-							   <br />
-								<br />
-								<p align="right"><a href="/products/High-power-Series/82.html"><img src="/image/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
-							  </span>
-							</span>
-						  </div>
-						  <div class="products" id="eliteProduct7">
-							<span class="hotproducts">
-							  <span class="floatleft"><a href="/products/Unmanagement-Switch/115.html"><img src="/upload/image/c3_b.jpg/c/126/115" width="126" height="115" /></a></span>
-							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/products/Unmanagement-Switch/115.html" class="a_blue_12b">8 Port Fast Ethernet Switch</a></span><br />
-							   <br />
-								<br />
-								<p align="right"><a href="/products/Unmanagement-Switch/115.html"><img src="/image/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
-							  </span>
-							</span>
-						  </div>
-						  <div class="products" id="eliteProduct8">
-							<span class="hotproducts">
-							  <span class="floatleft"><a href="/products/Unmanagement-Switch/116.html"><img src="/upload/image/c3_b.jpg/c/126/115" width="126" height="115" /></a></span>
-							  <span class="hotpro_content"><span class="txt_blue_12"><a href="/products/Unmanagement-Switch/116.html" class="a_blue_12b">5 Port Fast Ethernet Switch</a></span><br />
-							   <br />
-								<br />
-								<p align="right"><a href="/products/Unmanagement-Switch/116.html"><img src="/image/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
-							  </span>
-							</span>
-						  </div>
-					</div>
-				  </div>
-				</div>
-			</div>
-			<script type="text/javascript">
-				var oItems2=document.getElementById("eliteProduct");
-				var eliteProduct_k=oItems2.getElementsByTagName("div").length;
-				var eliteProduct_i=1;
-				eliteProduct_tt=setInterval("eliteProduct(1)",3000);
-				function eliteProduct(a){
-					clearInterval(eliteProduct_tt);
-					eliteProduct_tt=setInterval("eliteProduct(1)",3000);
-					eliteProduct_i+=a;
-					if (eliteProduct_i>eliteProduct_k){eliteProduct_i=1;}
-					if (eliteProduct_i==0){eliteProduct_i=eliteProduct_k;}
-						for (var j=1; j<=eliteProduct_k; j++){
-							document.getElementById("eliteProduct"+j).style.display="none";
-						}
-						document.getElementById("eliteProduct"+eliteProduct_i).style.display="block";
-					}
-					
-					document.getElementById("eliteProduct").onmouseover = function(event){
-						 event = event ? event : window.event
-						 var obj = event.srcElement ? event.srcElement : event.target;
-						 clearInterval(eliteProduct_tt);
-					}
-					document.getElementById("eliteProduct").onmouseout = function(event){
-					event = event ? event : window.event
-					var obj = event.srcElement ? event.srcElement : event.target;
-					eliteProduct_tt = window.setInterval(function(){
-						eliteProduct(1);
-					}, 3000);
-				}
-			</script>
+<?= $this->hotbuys ?>
 <?= $this->news ?>
 <?= $this->banner ?>
 		</div>
-		
 		<div class="clear">&nbsp;</div>
 		
 		<div id="bottom">
-			
-			<!-- Ссылки на соц. сети -->
-			<div class="floatleft">
-				<img height="32" src="/image/sysimages/26.jpg" width="25" />
-				<img height="32" hspace="5" src="/image/sysimages/27.jpg" width="25" />
-				<img height="32" src="/image/sysimages/28.jpg" width="25" />
-				<img height="32" hspace="5" src="/image/sysimages/29.jpg" width="25" />
-			</div>
-			
-			<!-- Меню в футере -->
-			<div id="bottommenu">
-				<a href="/Downloads/">Download</a> | <a href="/joinus.html">Join us</a> | <a href="mailto:support@netis-systems.com">Technical Support</a>
-			</div>
-			
-			<!-- Копирайт -->
-			<div id="bottomright">
-				Copyright &copy; 2012 Netis Systems All rights reserved. 
-			</div>
+<?= $this->social ?>
+<?= $this->footer ?>
+<?= $this->copyright ?>
 		</div>
 	</body>
 </html>
