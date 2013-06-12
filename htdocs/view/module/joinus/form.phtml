@@ -1,0 +1,136 @@
+					<div id="page_content_title">Приглашаем к сотрудничеству</div>
+					<div class="content_ge"></div>
+					<div class="content">
+<? if (session::flash('success')) { ?>
+						<p style="color: #448600; font-size: 16px;"><b>Спасибо. Ваша анкета отправлена.</b></p>
+<? } ?>
+						<form action="<?= url_for() ?>" method="post">
+							<div id="formcontent">
+								<span class="txt_blue_16">Информация о компании</span>
+								
+								<div class="formge">
+									<div class="formleft">Название компании</div>
+									<div class="formright">
+										<input type="text" name="title" class="inputform" value="<?= h($this->from_request('title')) ?>" />
+										<span class="font_red">*</span>
+<? if ($this->error['title']) { ?>
+										<span class="font_red"><?= $this->error['title'] ?></span>
+<? } ?>
+									</div>
+									<div class="clear"></div>
+								</div>
+								
+								<div class="formge">
+									<div class="formleft">Сайт компании</div>
+									<div class="formright">
+										<input type="text" name="site" class="inputform" value="<?= h($this->from_request('site')) ?>" />
+										<span class="font_red">*</span>
+<? if ($this->error['site']) { ?>
+										<span class="font_red"><?= $this->error['site'] ?></span>
+<? } ?>
+									</div>
+									<div class="clear"></div>
+								</div>
+								
+								<div class="formge">
+									<div class="formleft">Город</div>
+									<div class="formright">
+										<input type="text" name="city" class="inputform" value="<?= h($this->from_request('city')) ?>" />
+										<span class="font_red">*</span>
+<? if ($this->error['city']) { ?>
+										<span class="font_red"><?= $this->error['city'] ?></span>
+<? } ?>
+									</div>
+									<div class="clear"></div>
+								</div>
+								
+								<div class="formge">
+									<div class="formleft">Адрес</div>
+									<div class="formright">
+										<input type="text" name="address" class="inputform" value="<?= h($this->from_request('address')) ?>" />
+										<span class="font_red">*</span>
+<? if ($this->error['address']) { ?>
+										<span class="font_red"><?= $this->error['address'] ?></span>
+<? } ?>
+									</div>
+									<div class="clear"></div>
+								</div>
+								
+								<div class="formge">
+									<div class="formleft">Тип компании</div>
+									<div class="formright">
+										<select name="type" style="width:220px;">
+											<option value=""></option>
+											<option value="distributor"<? if ($this->in_request('type', 'distributor')) { ?> selected="selected"<? } ?>>Дистрибьютор</option>
+											<option value="dealer"<? if ($this->in_request('type', 'dealer')) { ?> selected="dealer"<? } ?>>Дилер</option>
+											<option value="retail"<? if ($this->in_request('type', 'retail')) { ?> selected="retail"<? } ?>>Розница</option>
+										</select>
+										<span class="font_red">*</span>
+<? if ($this->error['type']) { ?>
+										<span class="font_red"><?= $this->error['type'] ?></span>
+<? } ?>
+									</div>
+									<div class="clear"></div>
+								</div>
+								<br />
+								<span class="txt_blue_16">Контактная информация</span><br />
+								<div class="formge">
+									<div class="formleft">ФИО</div>
+									<div class="formright">
+										<input type="text" name="fio" class="inputform" value="<?= h($this->from_request('fio')) ?>" />
+										<span class="font_red">*</span>
+<? if ($this->error['fio']) { ?>
+										<span class="font_red"><?= $this->error['fio'] ?></span>
+<? } ?>
+									</div>
+									<div class="clear"></div>
+								</div>
+								
+								<div class="formge">
+									<div class="formleft">Email</div>
+									<div class="formright">
+										<input type="text" name="email" class="inputform" value="<?= h($this->from_request('email')) ?>" />
+										<span class="font_red">*</span>
+<? if ($this->error['email']) { ?>
+										<span class="font_red"><?= $this->error['email'] ?></span>
+<? } ?>
+									</div>
+									<div class="clear"></div>
+								</div>
+								
+								<div class="formge">
+									<div class="formleft">Skype</div>
+									<div class="formright">
+										<input type="text" name="skype" class="inputform" value="<?= h($this->from_request('skype')) ?>" />
+										<span class="font_red">*</span>
+<? if ($this->error['skype']) { ?>
+										<span class="font_red"><?= $this->error['skype'] ?></span>
+<? } ?>
+									</div>
+									<div class="clear"></div>
+								</div>
+								
+								<div class="formge">
+									<div class="formleft">Телефон</div>
+									<div class="formright">
+										<input type="text" name="phone" class="inputform" value="<?= h($this->from_request('phone')) ?>" />
+										<span class="font_red">*</span>
+<? if ($this->error['phone']) { ?>
+										<span class="font_red"><?= $this->error['phone'] ?></span>
+<? } ?>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</div>
+							
+							Поля, помеченные <span class="font_red">*</span>, обязательны к заполнению. <br />
+							<br />
+							<div class="formge">
+								<div class="formleft"></div>
+								<div class="formright">
+									<input type="image" name="imageField" id="imageField" src="/image/sysimages/btn.jpg" />
+								</div>
+								<div class="clear"></div>
+							</div>
+						</form>
+					</div>
