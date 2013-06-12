@@ -252,11 +252,13 @@ form {display:inline}
 .newslist li a{line-height:30px;}
 .newslist li a:hover {text-decoration:underline; line-height:30px;}
 .newslist li span{ display:none}
+.newslist p {margin: 0px;}
 
 .newsdes{}
 .newsdes img{padding:10px}
 .newsdeszi{ text-align: left; line-height:30px}
 .newsdeszi span{font-size:18px;color:#333; font-weight:bold}
+.newsdeszi p {margin: 0px;}
 
 .sortmemo { border-bottom:1px #CCC dashed; padding:0 0 20px 0; margin:0 0 20px 0}
 
