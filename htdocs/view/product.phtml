@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title><?= h( $this -> meta_title ) ?></title>
+		<meta name="keywords" content="<?= h( $this -> meta_keywords ) ?>"/> 
+		<meta name="description" content="<?= h( $this -> meta_description ) ?>"/> 
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+		<script type="text/javascript" src="/js/jquery.js"></script>
+		<script type="text/javascript" src="/js/common.js"></script>
+<!--[if IE 6]>
+		<script src="/js/PNG.js"></script>
+		<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+	</head>
+	<body>
+		<div id="top">
+			<div id="logo">
+				<a href="/"><img height="92" src="/image/sysimages/logo.jpg" width="140" /></a>
+			</div>
+			
+			<div id="menu">
+<?= $this->menu ?>
+			</div>
+			
+			<div id="top_right">
+<?= $this->contactus ?>
+				<div class="clear">&nbsp;</div>
+<?= $this->search ?>
+			</div>
+			<br />
+		</div>
+		
+		<div class="detail_ge"></div>
+		<div id="detail_up"></div>
+		
+		<div id="page_mid">
+<?= $this->location ?>
+<?= $this->content ?>
+			<div class="clear"></div>
+		</div>
+		<div id="page_down"></div>
+		<div class="clear">&nbsp;</div>
+		
+		<div id="bottom">
+<?= $this->social ?>
+<?= $this->footer ?>
+<?= $this->copyright ?>
+		</div>
+	</body>
+</html>
