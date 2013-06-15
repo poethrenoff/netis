@@ -173,18 +173,10 @@ class metadata
             'fields' => array(
                 'file_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
                 'file_product' => array( 'title' => 'Товар', 'type' => 'table', 'table' => 'product', 'errors' => 'require' ),
-                'file_type' => array( 'title' => 'Тип файла', 'type' => 'select', 'filter' => 1, 'values' => array(
-                    array( 'value' => '1', 'title' => 'Встроенная программа' ),
-                    array( 'value' => '2', 'title' => 'Драйвер' ),
-                    array( 'value' => '3', 'title' => 'Спецификация' ),
-                    array( 'value' => '4', 'title' => 'Руководство пользователя' ),
-                    array( 'value' => '5', 'title' => 'Краткая инструкция по установке' ) ), 'errors' => 'require' ),
+                'file_type' => array( 'title' => 'Тип файла', 'type' => 'table', 'table' => 'product_file_type', 'filter' => 1, 'errors' => 'require' ),
                 'file_title' => array( 'title' => 'Описание', 'type' => 'string', 'main' => 1, 'errors' => 'require' ),
                 'file_name' => array( 'title' => 'Файл', 'type' => 'file', 'upload_dir' => 'file', 'errors' => 'require' ),
-                'file_lang' => array( 'title' => 'Язык', 'type' => 'select', 'filter' => 1, 'values' => array(
-                    array( 'value' => 'ru', 'title' => 'Русский' ),
-                    array( 'value' => 'en', 'title' => 'Английский' ),
-                    array( 'value' => 'ml', 'title' => 'Многоязычный' ) ) ),
+                'file_lang' => array( 'title' => 'Язык файла', 'type' => 'table', 'table' => 'product_file_lang', 'filter' => 1, 'errors' => 'require' ),
                 'file_date' => array( 'title' => 'Дата', 'type' => 'date', 'show' => 1 ),
                 'file_size' => array( 'title' => 'Размер', 'type' => 'int', 'show' => 1, 'no_add' => 1, 'no_edit' => 1 ),
             ),
@@ -197,11 +189,40 @@ class metadata
             'title' => 'Типы товаров',
             'fields' => array(
                 'type_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
-                'type_title' => array( 'title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'sort' => 'asc', 'errors' => 'require' )
+                'type_title' => array( 'title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'sort' => 'asc', 'errors' => 'require' ),
             ),
             'links' => array(
                 'product' => array( 'table' => 'product', 'field' => 'product_type' ),
                 'property_group' => array( 'table' => 'property_group', 'field' => 'group_type' ),
+            ),
+        ),
+        
+        /**
+         * Таблица "Типы файлов для скачивания"
+         */
+        'product_file_type' => array(
+            'title' => 'Типы файлов для скачивания',
+            'fields' => array(
+                'type_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
+                'type_title' => array( 'title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'sort' => 'asc', 'errors' => 'require' ),
+                'type_order' => array( 'title' => 'Порядок', 'type' => 'order' )
+            ),
+            'links' => array(
+                'product_file' => array( 'table' => 'product_file', 'field' => 'file_type' ),
+            ),
+        ),
+        
+        /**
+         * Таблица "Языки файлов для скачивания"
+         */
+        'product_file_lang' => array(
+            'title' => 'Языки файлов для скачивания',
+            'fields' => array(
+                'lang_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
+                'lang_title' => array( 'title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'sort' => 'asc', 'errors' => 'require' ),
+            ),
+            'links' => array(
+                'product_file' => array( 'table' => 'product_file', 'field' => 'file_lang' ),
             ),
         ),
         

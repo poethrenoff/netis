@@ -1,0 +1,111 @@
+					<script type="text/javascript">
+						$(function(){
+							$("#kword").focus(function(){
+								if($(this).val()=="keyword") $(this).attr("value","")
+							});
+							$("#kword").blur(function(){
+								if($(this).val()=="") $(this).attr("value","keyword")
+							});
+						});
+						function page_load(div,url){
+							$("#"+div).load(url);
+						}
+					</script> 
+					<script type="text/javascript">
+						function gettodown(id){
+							var model,sortid,url
+							url = "";
+							model = GE('proid').options[GE('proid').selectedIndex].value;
+							sortid = GE('sortid').options[GE('sortid').selectedIndex].value;
+							if (sortid!="") url = "#"+sortid
+							if (model!="") location.href="/support/download/"+model+url;
+						}
+					</script>
+					
+					<div id="page_content_title">Скачать</div>
+					<div class="content_ge"></div>
+					<div class="content">
+						<div>
+							<span class="txt_blue_16">Быстрый поиск</span><br />
+							<div class="clear"></div>
+							<form action="" method="get" name="faqform">
+								<div class="floatleft">
+									<select class="selectwidth" name="psort" id="psort" onchange="page_load('sortdiv','/support/download/get_product/'+this.options[selectedIndex].value);">
+										<option value="">-- Категория товара --</option>
+<? foreach ($this->catalogue_list as $catalogue_item) { ?>
+										<option value="<?= $catalogue_item->get_id() ?>"><?= $catalogue_item->get_catalogue_title() ?></option>
+<? } ?>
+									</select>
+									<span id="sortdiv">
+										<select name="proid" id="proid" class="selectwidth">
+											<option value="">-- Номер модели --</option>
+										</select>
+									</span>
+									<span id="probemdiv">
+										<select name="sortid" id="sortid" class="selectwidth">
+											<option value="">-- Тип файла --</option>
+<? foreach ($this->file_type_list as $file_type) { ?>
+										<option value="<?= $file_type->get_id() ?>"><?= $file_type->get_type_title() ?></option>
+<? } ?>
+										</select>
+									</span>
+									<input name="ifsrh" type="hidden" id="ifsrh" value="yes" />
+								</div>
+								<div class="floatleft"><img src="/image/sysimages/62.jpg" width="78" height="24" style="margin:0 0 0 20px; cursor:pointer" onclick="gettodown()" /></div>
+							</form>
+							<div class="clear"></div>
+						</div>
+						<br />
+						
+						<div class="downmenu">
+							<ul>
+<? $catalogue_index = 1; ?>
+<? foreach ($this->catalogue_list as $catalogue_item) { ?>
+								<li class="newsmenuname_<?= $catalogue_index == 1 ? 2 : 1 ?>" id="menu_<?= $catalogue_index ?>" onClick="showindextxt(<?= $catalogue_index ?>,'menu_','content_',6)"><?= $catalogue_item->get_catalogue_title() ?></li>
+<? 		$catalogue_index++; ?>
+<? } ?>
+							</ul>
+							<div class="clear"></div>
+						</div>
+						
+<? $catalogue_index = 1; ?>
+<? foreach ($this->catalogue_list as $catalogue_item) { ?>
+						<div id="content_<?= $catalogue_index ?>" style="display: <?= $catalogue_index == 1 ? 'block' : 'none' ?>;">
+							<br />
+							
+<? 		$catalogue_list = $catalogue_item->get_catalogue_list(); ?>
+<?		if ($catalogue_list) { ?>
+<? 			foreach ($catalogue_list as $subcatalogue_item) { ?>
+<? 				$product_list = $subcatalogue_item->get_product_list($subcatalogue_item->get_id()); ?>
+<?				if ($product_list) { ?>
+							<div class="downsubsort"><?= $subcatalogue_item->get_catalogue_title() ?></div>
+							<div class="modellist">
+								<ul>
+<? 					foreach ($product_list as $product_item) { ?>
+									<li><a href="<?= url_for(array('controller' => 'support/download', 'id' => $product_item->get_id())) ?>"><?= $product_item->get_product_code() ?></a></li>
+<? 					} ?>
+								</ul>
+								<div class="clear"></div>
+							</div>
+							<br />
+<? 				} ?>
+<? 			} ?>
+<? 		} else { ?>
+<? 			$product_list = $catalogue_item->get_product_list($catalogue_item->get_id()); ?>
+<?			if ($product_list) { ?>
+							<div class="downsubsort"><?= $catalogue_item->get_catalogue_title() ?></div>
+							<div class="modellist">
+								<ul>
+<? 				foreach ($product_list as $product_item) { ?>
+									<li><a href="<?= url_for(array('controller' => 'support/download', 'id' => $product_item->get_id())) ?>"><?= $product_item->get_product_code() ?></a></li>
+<? 				} ?>
+								</ul>
+								<div class="clear"></div>
+							</div>
+							<br />
+<? 			} ?>
+<? 		} ?>
+						</div>
+<? 		$catalogue_index++; ?>
+<? } ?>
+					</div>

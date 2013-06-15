@@ -25,4 +25,29 @@ class model_catalogue extends hierarchy
         
         return $catalogue_url_cache[$this->get_id()] = '/';
     }
+    
+    // ¬озвращает подкаталоги данного каталога
+    public function get_catalogue_list()
+    {
+        $parent_field = $this->is_new ? 0 : $this->get_id();
+        return model::factory('catalogue')->get_list(
+            array('catalogue_parent' => $parent_field, 'catalogue_active' => 1), array('catalogue_order' => 'asc')
+        );
+    }
+    
+    // ¬озвращает список товаров в данном каталоге (включа€ подкаталоги)
+    public function get_product_list($with_children = true)
+    {
+        $product_list = model::factory('product')->get_list(
+            array('product_catalogue' => $this->get_id(), 'product_active' => 1), array('product_order' => 'asc')
+        );
+        
+        if ($with_children) {
+            foreach ($this->get_catalogue_list() as $catalogue_item) {
+                $product_list = array_merge($product_list, $catalogue_item->get_product_list($with_children));
+            }
+        }
+        
+        return $product_list;
+    }
 }

@@ -23,24 +23,14 @@ class model_product extends model
     }
     
     // Возвращает файлы товара, распределенные по типам
-    public function get_download_list()
+    public function get_file_list()
     {
         $product_file_list = model::factory('product_file')->get_list(
             array('file_product' => $this->get_id()), array('file_date' => 'desc')
         );
         
-        $file_type_list = array_reindex(
-            metadata::$objects['product_file']['fields']['file_type']['values'], 'value'
-        );
-        $file_lang_list = array_reindex(
-            metadata::$objects['product_file']['fields']['file_lang']['values'], 'value'
-        );
-        
         $file_list = array();
         foreach ($product_file_list as $product_file) {
-            $product_file->set_file_type($file_type_list[$product_file->get_file_type()]['title']);
-            $product_file->set_file_lang($file_lang_list[$product_file->get_file_lang()]['title']);
-            
             $file_list[$product_file->get_file_type()][] = $product_file;
         }
         return $file_list;

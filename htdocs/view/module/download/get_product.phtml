@@ -1,0 +1,6 @@
+<select name="proid" id="proid" class="selectwidth">
+	<option value="">-- Номер модели --</option>
+<? foreach ($this->product_list as $product_item) { ?>
+	<option value="<?= $product_item->get_id() ?>"><?= $product_item->get_product_code() ?></option>
+<? } ?>
+</select>

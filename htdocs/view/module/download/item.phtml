@@ -1,0 +1,32 @@
+					<div id="page_content_title">Файлы для <?= $this->get_product_code() ?></div>
+					<div class="content_ge"></div>
+					<div class="content"><br />
+<? foreach ($this->file_type_list as $file_type) { ?>
+<? 		if (isset($this->file_list[$file_type->get_id()])) { ?>
+						<div class="downsort">
+							<div class="floatleft">
+								<span class="txt_blue_14"><?= $file_type->get_type_title() ?></span><a name="<?= $file_type->get_id() ?>" id="<?= $file_type->get_id() ?>"></a>
+							</div>
+						</div>
+						<table width="100%" border="0" cellspacing="3" cellpadding="3">
+							<tr class="font_bold">
+								<td width="60%" align="left" bgcolor="#EFEFEF">Описание</td>
+								<td width="10%" align="center" bgcolor="#EFEFEF">Дата</td>
+								<td width="8%" align="center" bgcolor="#EFEFEF">Размер</td>
+								<td width="12%" align="center" bgcolor="#EFEFEF">Язык</td>
+								<td width="10%" align="center" bgcolor="#EFEFEF">Скачать</td>
+							</tr>
+<? 			foreach ($this->file_list[$file_type->get_id()] as $file_item) { ?>
+							<tr>
+								<td height="28" align="left"><?= $file_item->get_file_title() ?></td>
+								<td align="center"><?= Date::get($file_item->get_file_date()) ?></td>
+								<td align="center"><?= $file_item->get_file_size() ?></td>
+								<td align="center"><?= $this->file_lang_list[$file_item->get_file_lang()]->get_lang_title() ?></td>
+								<td align="center"><a href="<?= $file_item->get_file_name() ?>" target="_blank"><img src="/image/sysimages/70.jpg" width="30" height="28"></a></td>
+							</tr>
+<? 			} ?>
+						</table>
+						<br>
+						<br>
+<? 		} ?>
+<? } ?>

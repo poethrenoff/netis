@@ -32,14 +32,29 @@ class module_product extends module
     protected function action_item()
     {
         try {
-            $item = model::factory('product')->get(id());
+            $product = model::factory('product')->get(id());
         } catch (Exception $e) {
             not_found();
         }
         
-        $this->view->assign($item);
+        $this->view->assign('product', $product);
+        
+        $this->view->assign('marker_list', $product->get_marker_list());
+        $this->view->assign('picture_list', $product->get_picture_list());
+        $this->view->assign('property_list', $product->get_property_list());
+        $this->view->assign('property_group_list', $product->get_property_group_list());
+        $this->view->assign('file_list', $product->get_file_list());
+        $this->view->assign('product_link_list', $product->get_product_link_list());
+                
+        $file_type_list = model::factory('product_file_type')->get_list(array(), array('type_order' => 'desc'));
+        $this->view->assign('file_type_list', $file_type_list);
+        
+        $file_lang_list = model::factory('product_file_lang')->get_list();
+        $this->view->assign('file_lang_list', $file_lang_list);
+        
         $this->output['product'] = true;
-        $this->output['meta_title'] = $item->get_product_title();
+        $this->output['meta_title'] = $product->get_product_title();
+        
         $this->content = $this->view->fetch('module/product/item');
     }
 }
