@@ -291,6 +291,7 @@ form {display:inline}
 #detail_piclist li img { cursor:pointer}
 .detail_info {float:right; width:346px;}
 .detail_model {height:30px; line-height:30px; font-size:18px; color:#004A97; font-weight:bold; margin:0 0 10px 0}
+.detail_marker img {margin: 0px 5px 15px 0px;}
 
 .whatitdoes {color: #004A97; font-size:18px; font-weight:bold; margin:20px 0 20px 0;}
 .detail_intro {margin:10px 0 0 0; line-height:22px;  padding:0 0 0 0px;}

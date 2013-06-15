@@ -1,7 +1,151 @@
+<? $marker_list = $this->get_marker_list(); ?>
+<? $picture_list = $this->get_picture_list(); ?>
+<? $property_list = $this->get_property_list(); ?>
+<? $property_group_list = $this->get_property_group_list(); ?>
+<? $download_list = $this->get_download_list(); ?>
+<? $product_link_list = $this->get_product_link_list(); ?>
+			<link rel="stylesheet" href="/js/css/screen.css" type="text/css" media="screen" />
+			<link rel="stylesheet" href="/js/css/lightbox.css" type="text/css" media="screen" />
+			<script type="text/javascript" src="/js/lightbox.js"></script>
+			<script type="text/javascript" src="/js/product.js"></script>
 			<div id="product_detail">
-				
+				<div class="proname"><?= $this->get_product_title() ?>
+					<div class="pnbtn">
+						<script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+						<div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="icon" data-yashareQuickServices="yaru,vkontakte,facebook,twitter,odnoklassniki,moimir"></div>
+					</div>
+				</div>
+				<div class="detail_top">
+					<div class="detail_pic">
+						<div class="detail_bigpic1">
+<? foreach ($picture_list as $picture_picture) { ?>
+							<div class="detail_bigpic" style="display:none">
+								<div class="small">
+									<a hre="<?= $picture_picture->get_picture_image() ?>" rel="lightbox[plants]">
+										<span class="mark"></span>
+									</a>
+									<img src="<?= $picture_picture->get_picture_image() ?>/c/585/385" width="585" height="385">
+								</div>
+								<div class="boxbig" style="display: none;">
+									<div class="big" style="display: none; left: 0px; top: 0px;">
+										<img src="<?= $picture_picture->get_picture_image() ?>">
+									</div>
+								</div>
+							</div>
+<? } ?>
+						</div>
+						
+						<div id="detail_piclist">
+							<ul>
+<? foreach ($picture_list as $picture_picture) { ?>
+								<li>
+									<img src="<?= $picture_picture->get_picture_image() ?>/c/104/68" width="104" height="68">
+								</li>
+<? } ?>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="detail_info">
+						<div class="detail_model"><?= $this->get_product_code() ?></div>
+						<div class="detail_marker">
+<? foreach ($marker_list as $product_marker) { ?>
+							<img src="<?= $product_marker->get_marker_picture() ?>" title="<?= $product_marker->get_marker_title() ?>" >
+<? } ?>
+						</div>
+						<div class="clear"></div>
+						<div class="detail_intro">
+<?= $this->get_product_description() ?>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
 			</div>
 			<div class="detail_down"></div>
 			<div class="detail_content"> 
-				
+				<div class="detail_content_left">
+					<div class="detail_menu">
+						<ul>
+							<li class="newsmenuname_2" id="menu_1" onclick="showindextxt(1,'menu_','content_',5)">Характеристики</li>
+							<li class="newsmenuname_1" id="menu_2" onclick="showindextxt(2,'menu_','content_',5)">Спецификация</li>
+							<li class="newsmenuname_1" id="menu_3" onclick="showindextxt(3,'menu_','content_',5)">Применение</li>
+							<li class="newsmenuname_1" id="menu_4" onclick="showindextxt(4,'menu_','content_',5)">Скачать</li>
+						</ul>
+					</div>
+					<div id="content_1">
+<?= $this->get_product_features() ?>
+					</div>
+					<div id="content_2" style="display:none">
+<? foreach ($property_group_list as $property_group) { ?>
+<? 		if (isset($property_list[$property_group->get_id()])) { ?>
+						<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 720px;">
+							<tr>
+								<td colspan="2" style="background-color: rgb(0, 59, 131); width: 162px;">
+									<span style="font-size: 14px;"><span style="color: rgb(255, 240, 245);"><?= $property_group->get_group_title() ?></span></span>
+								</td>
+							</tr>
+<? 			foreach ($property_list[$property_group->get_id()] as $property) { ?>
+							<tr>
+								<td style="width: 162px;">
+									<?= $property->get_property_title() ?>
+								</td>
+								<td>
+									<?= $property->get_property_value() ?><?= $property->get_property_unit() ? ' ' . $property->get_property_unit() : '' ?>
+								</td>
+							</tr>
+<? 			} ?>
+						</table>
+<? 		} ?>
+<? } ?>
+					</div>
+					<div id="content_3" style="display:none">
+<?= $this->get_product_application() ?>
+					</div>
+					<div id="content_4" style="display:none">
+<? foreach ($download_list as $file_type => $file_list) { ?>
+						<div class="downsort_2">
+							<div class="floatleft">
+								<span class="txt_blue_14"><?= $file_type ?></span>
+							</div>
+						</div>
+						<table width="100%" border="0" cellspacing="3" cellpadding="3">
+							<tr class="font_bold">
+								<td width="60%" align="left" bgcolor="#EFEFEF">Описание</td>
+								<td width="10%" align="center" bgcolor="#EFEFEF">Дата</td>
+								<td width="8%" align="center" bgcolor="#EFEFEF">Размер</td>
+								<td width="12%" align="center" bgcolor="#EFEFEF">Скачать</td>
+								<td width="10%" align="center" bgcolor="#EFEFEF">Язык</td>
+							</tr>
+<? 		foreach ($file_list as $file_item) { ?>
+							<tr>
+								<td height="28" align="left"><?= $file_item->get_file_title() ?></td>
+								<td align="center"><?= Date::get($file_item->get_file_date()) ?></td>
+								<td align="center"><?= $file_item->get_file_size() ?></td>
+								<td align="center"><?= $file_item->get_file_lang() ?></td>
+								<td align="center"><a href="<?= $file_item->get_file_name() ?>" target="_blank"><img src="/image/sysimages/70.jpg" width="30" height="28"></a></td>
+							</tr>
+<? 		} ?>
+						</table>
+						<br>
+						<br>
+<? } ?>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="detail_content_right">
+					<div class="recpro_menu">Рекомендуем</div>
+					<div class="recprolist">
+						<ul>
+<? foreach ($product_link_list as $product_item) { ?>
+							<li>
+								<a href="<?= $product_item->get_product_url() ?>"><img src="<?= $product_item->get_product_image() . '/c/195/123' ?>" width="195" height="123"></a><br>
+								<a href="<?= $product_item->get_product_url() ?>" class="a_blue_12b"><?= $product_item->get_product_code() ?></a><br>
+								<a href="<?= $product_item->get_product_url() ?>"><?= $product_item->get_product_title() ?></a>
+							</li>
+<? } ?>
+						</ul>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
 			</div>

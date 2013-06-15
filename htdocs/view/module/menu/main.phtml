@@ -9,6 +9,7 @@
 								<ul>
 <? 				$submenu_index = 1; ?>
 <? 				foreach ($menu_item->get_children() as $submenu_item) { ?>
+<? 					if ($submenu_index > 5) continue;?>
 									<li style="z-index:<?= 1000 - $submenu_index ?>">
 										<a href="<?= $submenu_item->get_menu_url() ?>"><img src="<?= $submenu_item->get_menu_image() ?>" width="170" height="75" /></a><a href="<?= $submenu_item->get_menu_url() ?>"><span class='span<?= $submenu_index ?>'><?= h($submenu_item->get_menu_title()) ?></span></a>
 <?					if ($submenu_item->has_children()) { ?>

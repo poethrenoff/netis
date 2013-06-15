@@ -119,7 +119,8 @@ class metadata
                 'product_type' => array( 'title' => 'Тип товара', 'type' => 'table', 'table' => 'product_type', 'errors' => 'require' ),
                 'product_code' => array( 'title' => 'Артикул', 'type' => 'string', 'show' => 1, 'errors' => 'require' ),
                 'product_title' => array( 'title' => 'Название', 'type' => 'string', 'main' => 1, 'errors' => 'require' ),
-                'product_description' => array( 'title' => 'Описание', 'type' => 'text' ),
+                'product_intro' => array( 'title' => 'Описание для списка', 'type' => 'text' ),
+                'product_description' => array( 'title' => 'Описание', 'type' => 'text', 'editor' => 1 ),
                 'product_features' => array( 'title' => 'Характеристики', 'type' => 'text', 'editor' => 1 ),
                 'product_application' => array( 'title' => 'Применение', 'type' => 'text', 'editor' => 1 ),
                 'product_leader' => array( 'title' => 'Лидер продаж', 'type' => 'boolean' ),
@@ -159,7 +160,7 @@ class metadata
                 'picture_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
                 'picture_product' => array( 'title' => 'Товар', 'type' => 'table', 'table' => 'product', 'errors' => 'require' ),
                 'picture_image' => array( 'title' => 'Изображение', 'type' => 'image', 'upload_dir' => 'image', 'main' => 1, 'errors' => 'require' ),
-                'picture_default' => array( 'title' => 'По умолчанию', 'type' => 'default', 'show' => 1, 'group' => array( 'picture_product' ) ),
+                'picture_order' => array( 'title' => 'Порядок', 'type' => 'order', 'group' => array( 'picture_product' ) ),
             )
         ),
         
@@ -237,6 +238,7 @@ class metadata
          */
         'property_group' => array(
             'title' => 'Группы свойств',
+            'model' => 'propertyGroup',
             'fields' => array(
                 'group_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
                 'group_type' => array( 'title' => 'Тип товара', 'type' => 'table', 'table' => 'product_type', 'errors' => 'require' ),
