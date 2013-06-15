@@ -23,8 +23,8 @@ class admin_table_property extends admin_table
         $primary_field = $record[$this->primary_field];
         
         $records_count = db::select_cell('
-                select count(*) from product_property where property = :property',
-            array('property' => $primary_field));
+                select count(*) from product_property where property_id = :property_id',
+            array('property_id' => $primary_field));
         
         if ($records_count)
             throw new Exception('Ошибка. Невозможно удалить запись, так как у нее есть зависимые записи в таблице "Свойства товаров".');

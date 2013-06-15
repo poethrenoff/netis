@@ -23,12 +23,26 @@ class admin_table_product extends admin_table
             db::insert('product_file', array('file_product' => $primary_field) + $product_file);
         }
         
+        // Копируем маркеры товара
+        $product_markers = db::select_all('
+                select marker_id from product_marker where product_id = :product_id',
+            array('product_id' => id()));
+        foreach($product_markers as $product_marker)
+            db::insert('product_marker', array('product_id' => $primary_field) + $product_marker);
+        
+        // Копируем рекоменудемые товары
+        $product_links = db::select_all('
+                select link_product_id from product_link where product_id = :product_id',
+            array('product_id' => id()));
+        foreach($product_links as $product_link)
+            db::insert('product_link', array('product_id' => $primary_field) + $product_link);
+        
         // Копируем свойства товара
         $product_properties = db::select_all('
-                select property, value from product_property where product = :product',
-            array('product' => id()));
+                select property_id, value from product_property where product_id = :product_id',
+            array('product_id' => id()));
         foreach($product_properties as $product_property)
-            db::insert('product_property', array('product' => $primary_field) + $product_property);
+            db::insert('product_property', array('product_id' => $primary_field) + $product_property);
         
         if ($redirect)
             $this->redirect();
@@ -43,7 +57,7 @@ class admin_table_product extends admin_table
         
         parent::action_delete(false);
         
-        db::delete('product_property', array('product' => $primary_field));
+        db::delete('product_property', array('product_id' => $primary_field));
         
         if ($redirect)
             $this->redirect();
@@ -60,8 +74,8 @@ class admin_table_product extends admin_table
                 from property
                     inner join property_group on property_group.group_id = property.property_group
                     inner join product on property_group.group_type = product.product_type
-                    left join product_property on product_property.property = property.property_id and
-                        product_property.product = product.product_id
+                    left join product_property on product_property.property_id = property.property_id and
+                        product_property.product_id = product.product_id
                 where product.product_id = :product_id
                 order by property_group.group_order, property.property_order',
             array('product_id' => $primary_field));
@@ -142,11 +156,11 @@ class admin_table_product extends admin_table
                     'type' => $property_type, 'errors_code' => $property_errors_code));
         }
         
-        db::delete('product_property', array('product' => $primary_field));
+        db::delete('product_property', array('product_id' => $primary_field));
         foreach($insert_fields as $property_id => $property_value)
             if ($property_value !== null && $property_value !== '')
                 db::insert('product_property', array(
-                    'product' => $primary_field, 'property' => $property_id, 'value' => $property_value));
+                    'product_id' => $primary_field, 'property_id' => $property_id, 'value' => $property_value));
         
         if ($redirect)
             $this->redirect();

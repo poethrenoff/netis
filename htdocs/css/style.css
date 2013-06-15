@@ -261,6 +261,7 @@ form {display:inline}
 .newsdeszi p {margin: 0px;}
 
 .sortmemo { border-bottom:1px #CCC dashed; padding:0 0 20px 0; margin:0 0 20px 0}
+.sortmemo p {margin: 0px;}
 
 .sortlist li{ width:228px; height:60px; float:left; margin:0 0 20px 18px}
 .sortlist li img{ float:left}

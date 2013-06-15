@@ -1,0 +1,20 @@
+					<div id="page_content_title"><?= $this->catalogue_tree->get_catalogue_title() ?></div>
+					<div class="content_ge"></div>
+					<div class="content">
+						<div class="sortmemo">
+<?= $this->catalogue_tree->get_catalogue_description() ?>
+						</div>
+						<div class="sortlist">
+							<ul>
+<? foreach ($this->catalogue_tree->get_children() as $catalogue_item) { ?>
+								<li>
+									<a href="<?= $catalogue_item->get_catalogue_url() ?>"><img src="<?= $catalogue_item->get_catalogue_image() ?>" width="53" height="53" /></a>
+									<div class="text"><a href="<?= $catalogue_item->get_catalogue_url() ?>"><?= $catalogue_item->get_catalogue_title() ?></a></div>
+								</li>
+<? } ?>
+							</ul>
+						</div>
+						<div class="clear"></div>
+						<br />
+						<br />
+					</div>

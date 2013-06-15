@@ -31,6 +31,16 @@
 			<br />
 		</div>
 		
+<? if ($this->product) { ?>
+		<div class="detail_ge"></div>
+		<div id="detail_up"></div>
+		
+		<div id="page_mid">
+<?= $this->location ?>
+<?= $this->content ?>
+			<div class="clear"></div>
+		</div>
+<? } else { ?>
 		<div id="bannerbg">
 <?= $this->banner ?>
 		</div>
@@ -48,6 +58,7 @@
 			</div>
 			<div class="clear"></div>
 		</div>
+<? } ?>
 		<div id="page_down"></div>
 		<div class="clear">&nbsp;</div>
 		

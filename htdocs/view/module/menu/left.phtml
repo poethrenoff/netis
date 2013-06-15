@@ -1,8 +1,45 @@
+<?
+	$menu_current = null;
+	foreach ($this->get_children() as $menu_item) {
+		if (strpos(controller(), trim($menu_item->get_menu_url(), '/')) === 0) {
+			$menu_current = $menu_item; break;
+		}
+	}
+?>
+					<script type="text/javascript">
+					$(function(){
+						var a=<?= $menu_current ? $menu_current->get_id() : 0; ?>;
+						$("#a_"+a).toggleClass("zhankai_sel").parent(".tit").addClass("hover1").parent("li").find(".subleft").toggle();	
+						$(".zhankai").click(function(){
+							$(this).toggleClass("zhankai_sel").parent(".tit").parent("li").find(".subleft").toggle();
+						});
+						$(".tit").hover(function(){
+							$(this).addClass("hover").find("a").css({color:"#fff","text-decoration":"underline"});
+						},function(){
+							if($(this).find(".zhankai").attr("id")!="a_"+a)
+							$(this).removeClass("hover").find("a").css({color:"#666","text-decoration":"none"});
+						})
+					})
+					</script>
 					<div id="leftmenu_title"><?= h($this->get_menu_title()) ?></div>
 					<div id="leftmenu">
 						<ul>
 <? foreach ($this->get_children() as $menu_item) { ?>
-							<li><a href="<?= $menu_item->get_menu_url() ?>" class='a_left'><?= h($menu_item->get_menu_title()) ?></a></li>
+							<li>
+								<div class='tit'>
+<? 		if ($menu_item->has_children()) { ?>
+									<p class='zhankai' id='a_<?= $menu_item->get_id() ?>'></p>
+<? 		} ?>
+									<a href="<?= $menu_item->get_menu_url() ?>"><?= h($menu_item->get_menu_title()) ?></a>
+								</div>
+<? 		if ($menu_item->has_children()) { ?>
+								<div class='subleft'>
+<? 				foreach ($menu_item->get_children() as $submenu_item) { ?>
+									<a href="<?= $submenu_item->get_menu_url() ?>" class='a_subleft'><?= h($submenu_item->get_menu_title()) ?></a><br />
+<? 				} ?>
+								</div>
+							</li>
+<? 		} ?>
 <? } ?>
 						</ul>
 					</div>

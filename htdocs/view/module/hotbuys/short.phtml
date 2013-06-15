@@ -1,7 +1,7 @@
 			<div id="hotbuys">
 				<div>
 					<div class="floatleft"><img src="/image/sysimages/1.png" /></div>
-					<div class="floatright"><a href="/products/hotbuys/"><img src="/image/sysimages/16.jpg" width="41" height="15" /></a></div>
+					<div class="floatright"><a href="/product/hotbuys/"><img src="/image/sysimages/16.jpg" width="41" height="15" /></a></div>
 					<div class="clear"></div>
 				</div>
 				<div class="recommended">
@@ -11,11 +11,11 @@
 <? foreach ($this->product_list as $product_item) { ?>
 						<div class="products" id="eliteProduct<?= $product_index ?>">
 							<span class="hotproducts">
-								<span class="floatleft"><a href="/"><img src="<?= $product_item->get_product_image() ?>/c/126/115" width="126" height="115" /></a></span>
-								<span class="hotpro_content"><span class="txt_blue_12"><a href="/" class="a_blue_12b"><?= h($product_item->get_product_title()) ?></a></span><br />
+								<span class="floatleft"><a href="<?= $product_item->get_product_url() ?>"><img src="<?= $product_item->get_product_image() ?>/c/126/115" width="126" height="115" /></a></span>
+								<span class="hotpro_content"><span class="txt_blue_12"><a href="<?= $product_item->get_product_url() ?>" class="a_blue_12b"><?= h($product_item->get_product_title()) ?></a></span><br />
 									<br />
 									<br />
-									<p align="right"><a href="/"><img src="/image/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
+									<p align="right"><a href="<?= $product_item->get_product_url() ?>"><img src="/image/sysimages/18.jpg" width="50" height="11" hspace="5" vspace="6" /></a></p>
 								</span>
 							</span>
 						</div>

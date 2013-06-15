@@ -12,4 +12,13 @@ class model_product extends model
         $picture = model::factory('product_picture')->get($record['picture_id'], $record);
         return $picture->get_picture_image();
     }
+    
+    // Âîçâğàùàåò URL òîâàğà
+    public function get_product_url()
+    {
+        // @todo Ïğîâåğèòü êåø îáúåêòîâ
+        // @todo Ïîëó÷åíèå àãğåãèğîâàííûõ îáúåêòîâ
+        $catalogue = model::factory('catalogue')->get($this->get_product_catalogue());
+        return url_for(array('controller' => $catalogue->get_catalogue_url(), 'id' => $this->get_id()));
+    }
 }
