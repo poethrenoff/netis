@@ -37,6 +37,10 @@ class module_product extends module
             not_found();
         }
         
+        if (!$product->get_product_active()) {
+            not_found();
+        }
+        
         $this->view->assign('product', $product);
         
         $this->view->assign('marker_list', $product->get_marker_list());

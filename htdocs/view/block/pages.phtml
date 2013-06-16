@@ -1,19 +1,22 @@
 <? if( $this -> count > $this -> by_page ) { ?>
+<div id='Pagediv'>
 <? 		if( $this -> prev_page ) { ?>
-<a href="<?= h( $this -> prev_page['link'] ) ?>">&lt;</a>
+	<a href='<?= h( $this -> prev_page['link'] ) ?>'><img src='/image/sysimages/pre.png' class='margin5' /></a>
 <? 		} else { ?>
-<b>&lt;</b>
+	<span class='span_a'><img src='/image/sysimages/pre_no.png' class='margin8' /></span>
 <? 		} ?>
 <? 		foreach( $this -> pages as $page ) { ?>
 <? 			if( $page['link'] ) { ?>
-<a href="<?= h( $page['link'] ) ?>"><? if ( $page['number'] ) { ?><?= $page['number'] ?><? } else { ?>&hellip;<? } ?></a>
+<a href='<?= h( $page['link'] ) ?>' class='a_page'><? if ( $page['number'] ) { ?><?= $page['number'] ?><? } else { ?>&hellip;<? } ?></a>
 <? 			} else { ?>
-<b><?= $page['number'] ?></b>
+	<span class='span_b'><?= $page['number'] ?></span>
 <? 			} ?>
 <?		} ?>
 <? 		if( $this -> next_page ) { ?>
-<a href="<?= h( $this -> next_page['link'] ) ?>">&gt;</a>
+	<a href='<?= h( $this -> next_page['link'] ) ?>'><img src='/image/sysimages/next.png' class='margin5' /></a>
 <? 		} else { ?>
-<b>&gt;</b>
+	<span class='span_a'><img src='/image/sysimages/next_no.png' class='margin8' /></span>
 <? 		} ?>
+	<div class='clear'></div>
+</div>
 <? } ?>

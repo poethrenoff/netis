@@ -81,7 +81,7 @@ jQuery(function(){
 			jQuery("#searchDiv").hide();
 		}else{
 			jQuery.ajax({
-				url:"/inc/ajax.asp?keyword="+text,
+				url:"/search/get_result?keyword="+text,
 				success:function(data){
 					jQuery("#searchDiv").html(data);
 				}

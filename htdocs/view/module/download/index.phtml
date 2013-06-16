@@ -18,7 +18,7 @@
 							model = GE('proid').options[GE('proid').selectedIndex].value;
 							sortid = GE('sortid').options[GE('sortid').selectedIndex].value;
 							if (sortid!="") url = "#"+sortid
-							if (model!="") location.href="/support/download/"+model+url;
+							if (model!="") location.href="/support/download/item/"+model+url;
 						}
 					</script>
 					
@@ -82,7 +82,7 @@
 							<div class="modellist">
 								<ul>
 <? 					foreach ($product_list as $product_item) { ?>
-									<li><a href="<?= url_for(array('controller' => 'support/download', 'id' => $product_item->get_id())) ?>"><?= $product_item->get_product_code() ?></a></li>
+									<li><a href="<?= url_for(array('controller' => 'support/download', 'action' => 'item', 'id' => $product_item->get_id())) ?>"><?= $product_item->get_product_code() ?></a></li>
 <? 					} ?>
 								</ul>
 								<div class="clear"></div>
@@ -97,7 +97,7 @@
 							<div class="modellist">
 								<ul>
 <? 				foreach ($product_list as $product_item) { ?>
-									<li><a href="<?= url_for(array('controller' => 'support/download', 'id' => $product_item->get_id())) ?>"><?= $product_item->get_product_code() ?></a></li>
+									<li><a href="<?= url_for(array('controller' => 'support/download', 'action' => 'item', 'id' => $product_item->get_id())) ?>"><?= $product_item->get_product_code() ?></a></li>
 <? 				} ?>
 								</ul>
 								<div class="clear"></div>

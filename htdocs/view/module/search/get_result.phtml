@@ -1,0 +1,11 @@
+<div class="searchresult">
+	<ul>
+<? foreach ($this->result_list as $result_item) { ?>
+		<li style="border-bottom:1px #CCC dashed">
+			<span class="font_999"><?= $result_item['result_title'] ?></span> <br>
+			<a class="a_blue_14b" target="_blank" href="<?= $result_item['result_url'] ?>"><?= $result_item['main_field'] ?></a> 
+		</li>
+<? } ?>
+	</ul>
+	<div class="clear"></div>
+</div>
