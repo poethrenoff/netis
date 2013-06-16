@@ -67,8 +67,7 @@ class module_search extends module
         $this->adjunct_result($result_list);
         
         $this->view->assign('result_list', $result_list);
-        $this->view->display('module/search/get_result');
-        exit;
+        $this->content = $this->view->fetch('module/search/get_result');
     }
     
     protected function adjunct_result(&$result_list)

@@ -33,7 +33,6 @@ class module_download extends module
         $this->view->assign('file_lang_list', $file_lang_list);
         
         $this->output['meta_title'] = $product->get_product_title();
-        
         $this->content = $this->view->fetch('module/download/item');
     }
     
@@ -43,7 +42,15 @@ class module_download extends module
         $product_list = model::factory('catalogue')->get(id())->get_product_list();
         
         $this->view->assign('product_list', $product_list);
-        $this->view->display('module/download/get_product');
-        exit;
+        $this->content = $this->view->fetch('module/download/get_product');
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    // Дополнительные параметры хэша модуля
+    protected function ext_cache_key()
+    {
+        return parent::ext_cache_key() +
+            ($this->action == 'item' || $this->action == 'get_product' ? array('_id' => id()) : array());
     }
 }

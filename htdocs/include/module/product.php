@@ -61,4 +61,12 @@ class module_product extends module
         
         $this->content = $this->view->fetch('module/product/item');
     }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    // Äîïîëíèòåëüíûå ïàğàìåòğû õıøà ìîäóëÿ
+    protected function ext_cache_key()
+    {
+        return parent::ext_cache_key() + (id() ? array('_id' => id()) : array());
+    }
 }

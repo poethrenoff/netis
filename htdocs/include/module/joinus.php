@@ -50,4 +50,10 @@ class module_joinus extends module
         
         $this->content = $this->view->fetch('module/joinus/form');
     }
+    
+    // Отключаем кеширование
+    protected function get_cache_key()
+    {
+        return false;
+    }
 }

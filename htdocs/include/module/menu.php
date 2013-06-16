@@ -66,9 +66,14 @@ class module_menu extends module
     // Дополнительные параметры хэша модуля
     protected function ext_cache_key()
     {
-        $current_page = page();
+        $ext_cache_key = parent::ext_cache_key();
         
-        return parent::ext_cache_key() +
-            array('_page' => $current_page['page_id']);
+        $menu_template = $this->get_param('template');
+        if (in_array($menu_template, array('left', 'location'))) {
+            $current_page = page();
+            $ext_cache_key += array('_page' => $current_page['page_id']);
+        }
+        
+        return $ext_cache_key;
     }
 }

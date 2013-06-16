@@ -9,4 +9,10 @@ class module_banner extends module
         $this->view->assign($banner_item);
         $this->content = $this->view->fetch('module/banner/item');
     }
+    
+    // Отключаем кеширование
+    protected function get_cache_key()
+    {
+        return false;
+    }
 }
