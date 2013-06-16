@@ -19,7 +19,7 @@
 <? 			foreach ($this->file_list[$file_type->get_id()] as $file_item) { ?>
 							<tr>
 								<td height="28" align="left"><?= $file_item->get_file_title() ?></td>
-								<td align="center"><?= Date::get($file_item->get_file_date()) ?></td>
+								<td align="center"><?= date::get($file_item->get_file_date()) ?></td>
 								<td align="center"><?= $file_item->get_file_size() ?></td>
 								<td align="center"><?= $this->file_lang_list[$file_item->get_file_lang()]->get_lang_title() ?></td>
 								<td align="center"><a href="<?= $file_item->get_file_name() ?>" target="_blank"><img src="/image/sysimages/70.jpg" width="30" height="28"></a></td>

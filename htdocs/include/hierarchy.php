@@ -27,6 +27,12 @@ class hierarchy extends model
         }
     }
     
+    // Получение поля с идентификатором родительской записи
+    public function get_parent_field()
+    {
+        return $this->parent_field;
+    }
+    
     // Получение объекта-родителя
     public function get_parent()
     {

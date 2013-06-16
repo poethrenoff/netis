@@ -1,20 +1,35 @@
 <?php
-class model_product extends model
+class model_product extends search
 {
-    // Âîçâðàùàåò URL òîâàðà
-    public function get_product_url()
+    // Ð¡Ð¿Ð¸ÑÐ¾Ðº Ð¿Ð¾Ð»ÐµÐ¹, ÑƒÑ‡Ð°ÑÑ‚Ð²ÑƒÑŽÑ‰Ð¸Ñ… Ð² Ð¿Ð¾Ð¸ÑÐºÐµ
+    protected $search_fields = array(
+        'product_code', 'product_title', 'product_description', 'product_features',
+    );
+    
+    // Ð¡Ð¿Ð¸ÑÐ¾Ðº Ð´Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ñ… ÑƒÑÐ»Ð¾Ð²Ð¸Ð¹ Ð¿Ð¾Ð¸ÑÐºÐ°
+    protected $search_conditions = array(
+        'product_active' => 1,
+    );
+    
+    // Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ ÐºÐ°Ñ‚Ð°Ð»Ð¾Ð³ Ñ‚Ð¾Ð²Ð°Ñ€Ð°
+    public function get_catalogue()
     {
-        $catalogue = model::factory('catalogue')->get($this->get_product_catalogue());
-        return url_for(array('controller' => $catalogue->get_catalogue_url(), 'id' => $this->get_id()));
+        return model::factory('catalogue')->get($this->get_product_catalogue());
     }
     
-    // Âîçâðàùàåò ìàðêåðû òîâàðà
+    // Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ URL Ñ‚Ð¾Ð²Ð°Ñ€Ð°
+    public function get_product_url()
+    {
+        return url_for(array('controller' => $this->get_catalogue()->get_catalogue_url(), 'id' => $this->get_id()));
+    }
+    
+    // Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ð¼Ð°Ñ€ÐºÐµÑ€Ñ‹ Ñ‚Ð¾Ð²Ð°Ñ€Ð°
     public function get_marker_list()
     {
         return model::factory('marker')->get_by_product($this->get_id());
     }
     
-    // Âîçâðàùàåò èçîáðàæåíèÿ òîâàðà
+    // Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ð¸Ð·Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ñ‚Ð¾Ð²Ð°Ñ€Ð°
     public function get_picture_list()
     {
         return model::factory('product_picture')->get_list(
@@ -22,7 +37,7 @@ class model_product extends model
         );
     }
     
-    // Âîçâðàùàåò ôàéëû òîâàðà, ðàñïðåäåëåííûå ïî òèïàì
+    // Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ñ„Ð°Ð¹Ð»Ñ‹ Ñ‚Ð¾Ð²Ð°Ñ€Ð°, Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð½Ñ‹Ðµ Ð¿Ð¾ Ñ‚Ð¸Ð¿Ð°Ð¼
     public function get_file_list()
     {
         $product_file_list = model::factory('product_file')->get_list(
@@ -37,7 +52,7 @@ class model_product extends model
 
     }
     
-    // Âîçâðàùàåò èçîáðàæåíèå ïî óìîë÷àíèþ
+    // Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ð¸Ð·Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾ ÑƒÐ¼Ð¾Ð»Ñ‡Ð°Ð½Ð¸ÑŽ
     public function get_product_image()
     {
         $picture_list = model::factory('product_picture')->get_list(
@@ -47,7 +62,7 @@ class model_product extends model
         return $default_image->get_picture_image();
     }
     
-    // Âîçâðàùàåò ãðóïïû ñâîéñòâ òîâàðà
+    // Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ð³Ñ€ÑƒÐ¿Ð¿Ñ‹ ÑÐ²Ð¾Ð¹ÑÑ‚Ð² Ñ‚Ð¾Ð²Ð°Ñ€Ð°
     public function get_property_group_list()
     {
         return model::factory('property_group')->get_list(
@@ -55,7 +70,7 @@ class model_product extends model
         );
     }
     
-    // Âîçâðàùàåò ñâîéñòâà òîâàðà, ðàñïðåäåëåííûå ïî ãðóïïàì
+    // Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ ÑÐ²Ð¾Ð¹ÑÑ‚Ð²Ð° Ñ‚Ð¾Ð²Ð°Ñ€Ð°, Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð½Ñ‹Ðµ Ð¿Ð¾ Ð³Ñ€ÑƒÐ¿Ð¿Ð°Ð¼
     public function get_property_list()
     {
         $product_property_list = db::select_all('
@@ -82,7 +97,7 @@ class model_product extends model
         return $property_list;
     }
     
-    // Âîçâðàùàåò ñïèñîê ðåêîìåíäîâàííûõ òîâàðîâ
+    // Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ ÑÐ¿Ð¸ÑÐ¾Ðº Ñ€ÐµÐºÐ¾Ð¼ÐµÐ½Ð´Ð¾Ð²Ð°Ð½Ð½Ñ‹Ñ… Ñ‚Ð¾Ð²Ð°Ñ€Ð¾Ð²
     public function get_product_link_list()
     {
         $product_link_list = db::select_all('
@@ -98,5 +113,19 @@ class model_product extends model
             array('product_id' => $this->get_id(), 'product_active' => 1)
         );
         return model::factory('product')->get_batch($product_link_list);
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    // ÐŸÐ¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ ÑÑÑ‹Ð»ÐºÐ¸ Ð½Ð° Ð¾Ð±ÑŠÐµÐºÑ‚
+    public function get_result_url()
+    {
+        return $this->get_product_url();
+    }
+    
+    // ÐŸÐ¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ Ð¾Ð¿Ð¸ÑÐ°Ð½Ð¸Ñ Ð¾Ð±ÑŠÐµÐºÑ‚Ð°
+    public function get_result_title()
+    {
+        return 'Ð¢Ð¾Ð²Ð°Ñ€Ñ‹ / ' . $this->get_catalogue()->get_catalogue_title();
     }
 }

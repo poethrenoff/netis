@@ -169,7 +169,7 @@ class metadata
          */
         'product_file' => array(
             'title' => 'Файлы для скачивания',
-            'class' => 'file',
+            'class' => 'productFile', 'model' => 'productFile',
             'fields' => array(
                 'file_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
                 'file_product' => array( 'title' => 'Товар', 'type' => 'table', 'table' => 'product', 'errors' => 'require' ),

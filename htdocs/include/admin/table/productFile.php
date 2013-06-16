@@ -1,5 +1,5 @@
 <?php
-class admin_table_file extends admin_table
+class admin_table_productFile extends admin_table
 {
     protected function action_add_save($redirect = true)
     {
