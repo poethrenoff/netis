@@ -91,10 +91,16 @@ jQuery(function(){
 	}
 });
 
-function compareItem(id){
+function compareItem(id, button){
+    var $button = $(button);
     $.get('/compare/add/' + id,function (response){
-        $("#compare").html(response);
-    });
+        if (response.success) {
+            $button.hide('slow');
+            $("#compare").html(response.message);
+        } else {
+            alert(response.message);
+        }
+    }, 'json');
     return false;
 }
 

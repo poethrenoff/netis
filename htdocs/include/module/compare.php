@@ -41,12 +41,20 @@ class module_compare extends module
             }
             
             $compare->add($product->get_id(), $product->get_product_type());
+            
+            $this->view->assign($compare);
+            $this->view->fetch('module/compare/info');
+            
+            $this->content = json_encode(array(
+                'success' => true,
+                'message' => $this->view->fetch('module/compare/info'),
+            ));
         } catch (Exception $e) {
-             $this->view->error = $e->getMessage();
+            $this->content = json_encode(array(
+                'success' => false,
+                'message' => $e->getMessage(),
+            ));
         }
-        
-        $this->view->assign($compare);
-        $this->content = $this->view->fetch('module/compare/info');
     }
     
     protected function action_delete()
