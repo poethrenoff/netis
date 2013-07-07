@@ -89,7 +89,12 @@ jQuery(function(){
 			jQuery("#searchDiv").show();
 		}
 	}
-})
+});
 
-
+function compareItem(id){
+    $.get('/compare/add/' + id,function (response){
+        $("#compare").html(response);
+    });
+    return false;
+}
 

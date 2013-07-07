@@ -585,3 +585,7 @@ cursor:pointer;
 /*****************/
 .proname{ position:relative}
 .pnbtn{ position:absolute; top:15px; left:800px;}
+
+#compare {
+    text-align: right;
+}
