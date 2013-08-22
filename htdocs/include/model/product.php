@@ -58,6 +58,9 @@ class model_product extends search
         $picture_list = model::factory('product_picture')->get_list(
             array('picture_product' => $this->get_id()), array('picture_order' => 'asc'), 1
         );
+        if (empty($picture_list)) {
+            return get_preference('default_image');
+        }
         $default_image = current($picture_list);
         return $default_image->get_picture_image();
     }
