@@ -95,7 +95,7 @@ class model_product extends search
         foreach ($product_property_list as $product_property) {
             $property = model::factory('property')->get($product_property['property_id'], $product_property)
                 ->set_property_value($product_property['property_value']);
-            $property_list[$property->get_property_group()][] = $property;
+            $property_list[$property->get_property_group()][$property->get_id()] = $property;
         }
         return $property_list;
     }

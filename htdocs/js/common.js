@@ -91,14 +91,16 @@ jQuery(function(){
 	}
 });
 
-function compareItem(id, button){
+function compareItem(id, button, confirm){
     var $button = $(button);
-    $.get('/compare/add/' + id,function (response){
-        if (response.success) {
+    $.get('/compare/add/' + id, {'confirm': confirm}, function (response){
+        if (response.error) {
+            alert(response.error);
+        } else if (response.confirm && window.confirm(response.confirm)) {
+            compareItem(id, button, true);
+        } else if (response.message) {
+            $('#compare').html(response.message);
             $button.hide('slow');
-            $("#compare").html(response.message);
-        } else {
-            alert(response.message);
         }
     }, 'json');
     return false;

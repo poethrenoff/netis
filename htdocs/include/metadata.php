@@ -187,6 +187,7 @@ class metadata
          */
         'product_type' => array(
             'title' => 'Типы товаров',
+            'model' => 'productType',
             'fields' => array(
                 'type_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
                 'type_title' => array( 'title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'sort' => 'asc', 'errors' => 'require' ),
@@ -259,7 +260,6 @@ class metadata
          */
         'property_group' => array(
             'title' => 'Группы свойств',
-            'model' => 'propertyGroup',
             'fields' => array(
                 'group_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
                 'group_type' => array( 'title' => 'Тип товара', 'type' => 'table', 'table' => 'product_type', 'errors' => 'require' ),
