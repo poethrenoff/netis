@@ -322,6 +322,60 @@ class metadata
             ),
         ),
         
+        /**
+         * Таблица "Регионы"
+         */
+        'region' => array(
+            'title' => 'Регионы',
+            'fields' => array(
+                'region_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
+                'region_title' => array( 'title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'sort' => 'asc', 'errors' => 'require' ),
+            ),
+            'links' => array(
+                'city' => array( 'table' => 'city', 'field' => 'city_region' ),
+            ),
+        ),
+        
+        /**
+         * Таблица "Города"
+         */
+        'city' => array(
+            'title' => 'Города',
+            'fields' => array(
+                'city_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
+                'city_region' => array( 'title' => 'Регион', 'type' => 'table', 'table' => 'region', 'filter' => 1, 'errors' => 'require' ),
+                'city_title' => array( 'title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'sort' => 'asc', 'errors' => 'require' ),
+                'city_capital' => array( 'title' => 'Столица', 'type' => 'boolean', 'show' => 1 ),
+                'city_on_top' => array( 'title' => 'Наверху', 'type' => 'boolean', 'show' => 1 ),
+            ),
+            'links' => array(
+                'partner' => array( 'table' => 'partner', 'field' => 'partner_city' ),
+            ),
+        ),
+        
+        /**
+         * Таблица "Партнеры"
+         */
+        'partner' => array(
+            'title' => 'Партнеры',
+            'fields' => array(
+                'partner_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
+                'partner_title' => array( 'title' => 'Название компании', 'type' => 'string', 'show' => 1, 'main' => 1, 'sort' => 'asc', 'errors' => 'require' ),
+                'partner_site' => array( 'title' => 'Сайт компании', 'type' => 'string', 'errors' => 'require' ),
+                'partner_city' => array( 'title' => 'Город', 'type' => 'table', 'table' => 'city', 'errors' => 'require' ),
+                'partner_address' => array( 'title' => 'Адрес', 'type' => 'string', 'errors' => 'require' ),
+                'partner_type' => array('title' => 'Тип комапнии', 'type' => 'select', 'filter' => 1, 'values' => array(
+                        array('value' => 'distributor', 'title' => 'дистрибьютор'),
+                        array('value' => 'dealer', 'title' => 'дилер'),
+                        array('value' => 'retail', 'title' => 'розница')), 'show' => 1, 'errors' => 'require'),
+                'partner_fio' => array( 'title' => 'ФИО', 'type' => 'string', 'errors' => 'require' ),
+                'partner_email' => array( 'title' => 'Email', 'type' => 'string', 'errors' => 'require' ),
+                'partner_skype' => array( 'title' => 'Skype', 'type' => 'string', 'errors' => 'require' ),
+                'partner_phone' => array( 'title' => 'Телефон', 'type' => 'string', 'errors' => 'require' ),
+                'partner_active' => array( 'title' => 'Опубликовать на сайте', 'type' => 'active' ),
+            ),
+        ),
+        
         ////////////////////////////////////////////////////////////////////////////////////////
         
         /**

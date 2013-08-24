@@ -35,7 +35,21 @@
 								<div class="formge">
 									<div class="formleft">Город</div>
 									<div class="formright">
-										<input type="text" name="city" class="inputform" value="<?= h($this->from_request('city')) ?>" />
+										<select name="city" style="width:220px;">
+											<option value=""></option>
+<? foreach ($this->city_on_top_list as $city) { ?>
+											<option value="<?= $city->get_id() ?>"<? if ($this->in_request('city', $city->get_id())) { ?> selected="selected"<? } ?> style="color: <?= $city->get_city_capital() ? 'black' : 'gray' ?>"><?= $city->get_city_title() ?></option>
+<? } ?>
+<? foreach ($this->region_list as $region) { ?>
+<? 		if (count($this->city_by_region_list[$region->get_id()])) { ?>
+											<optgroup label="<?= $region->get_region_title() ?>">
+<? 			foreach ($this->city_by_region_list[$region->get_id()] as $city) { ?>
+												<option value="<?= $city->get_id() ?>"<? if ($this->in_request('city', $city->get_id())) { ?> selected="selected"<? } ?> style="color: <?= $city->get_city_capital() ? 'black' : 'gray' ?>"><?= $city->get_city_title() ?></option>
+<? 			} ?>
+											</optgroup>
+<? 		} ?>
+<? } ?>
+										</select>
 										<span class="font_red">*</span>
 <? if ($this->error['city']) { ?>
 										<span class="font_red"><?= $this->error['city'] ?></span>
@@ -61,9 +75,9 @@
 									<div class="formright">
 										<select name="type" style="width:220px;">
 											<option value=""></option>
-											<option value="distributor"<? if ($this->in_request('type', 'distributor')) { ?> selected="selected"<? } ?>>Дистрибьютор</option>
-											<option value="dealer"<? if ($this->in_request('type', 'dealer')) { ?> selected="selected"<? } ?>>Дилер</option>
-											<option value="retail"<? if ($this->in_request('type', 'retail')) { ?> selected="selected"<? } ?>>Розница</option>
+<? foreach ($this->type_values as $value => $title) { ?>
+											<option value="<?= $value ?>"<? if ($this->in_request('type', $value)) { ?> selected="selected"<? } ?>><?= $title ?></option>
+<? } ?>
 										</select>
 										<span class="font_red">*</span>
 <? if ($this->error['type']) { ?>

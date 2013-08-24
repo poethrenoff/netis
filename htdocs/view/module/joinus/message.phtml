@@ -1,7 +1,7 @@
 <b>Информация о компании</b><br/><br/>
 Название компании: <?= $this->from_request('title') ?><br/>
 Сайт компании: <?= $this->from_request('site') ?><br/>
-Город: <?= $this->from_request('city') ?><br/>
+Город: <?= $this->city_list[$this->from_request('city')]->get_city_title() ?><br/>
 Адрес: <?= $this->from_request('address') ?><br/>
 Тип компании: <?= $this->type_values[$this->from_request('type')] ?><br/><br/>
 
