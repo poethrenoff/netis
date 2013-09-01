@@ -48,6 +48,7 @@ class module_product extends module
         $this->view->assign('property_list', $product->get_property_list());
         $this->view->assign('property_group_list', $product->get_property_group_list());
         $this->view->assign('file_list', $product->get_file_list());
+        $this->view->assign('certificate_list', $product->get_certificate_list());
         $this->view->assign('product_link_list', $product->get_product_link_list());
                 
         $file_type_list = model::factory('product_file_type')->get_list(array(), array('type_order' => 'desc'));

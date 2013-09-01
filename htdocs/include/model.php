@@ -99,7 +99,7 @@ class model
         return $this;
     }
 
-    // Получние списка объектов
+    // Получение списка объектов
     public function get_batch(&$records = array()) {
         $objects = array();
         foreach ($records as $record) {
@@ -143,7 +143,7 @@ class model
     // Получение количества объектов
     public function get_count($where = array()) {
         list($filter_clause, $filter_binds) = $this->get_filter_condition($where);
-        return db::select_cell("select count(*) from {$this->object}" . $filter_clause, $filter_binds);
+        return db::select_cell("select count(*) from {$this->object} {$filter_clause}", $filter_binds);
     }
 
     // Получение списка объектов

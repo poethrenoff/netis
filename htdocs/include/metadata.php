@@ -136,6 +136,8 @@ class metadata
                     'primary_field' => 'product_id', 'secondary_field' => 'marker_id', 'title' => 'Маркеры' ),
                 'link' => array( 'secondary_table' => 'product', 'relation_table' => 'product_link',
                     'primary_field' => 'product_id', 'secondary_field' => 'link_product_id', 'title' => 'Рекомендуемые' ),
+                'certificate' => array('secondary_table' => 'certificate', 'relation_table' => 'product_certificate',
+                    'primary_field' => 'product_id', 'secondary_field' => 'certificate_id'),
             ),
         ),
         
@@ -363,7 +365,6 @@ class metadata
                 'partner_title' => array( 'title' => 'Название компании', 'type' => 'string', 'show' => 1, 'main' => 1, 'sort' => 'asc', 'errors' => 'require' ),
                 'partner_site' => array( 'title' => 'Сайт компании', 'type' => 'string', 'errors' => 'require' ),
                 'partner_city' => array( 'title' => 'Город', 'type' => 'table', 'table' => 'city', 'errors' => 'require' ),
-                'partner_address' => array( 'title' => 'Адрес', 'type' => 'string', 'errors' => 'require' ),
                 'partner_type' => array('title' => 'Тип комапнии', 'type' => 'select', 'filter' => 1, 'values' => array(
                         array('value' => 'distributor', 'title' => 'дистрибьютор'),
                         array('value' => 'dealer', 'title' => 'дилер'),
@@ -372,7 +373,65 @@ class metadata
                 'partner_email' => array( 'title' => 'Email', 'type' => 'string', 'errors' => 'require' ),
                 'partner_skype' => array( 'title' => 'Skype', 'type' => 'string', 'errors' => 'require' ),
                 'partner_phone' => array( 'title' => 'Телефон', 'type' => 'string', 'errors' => 'require' ),
+                'partner_logo' => array('title' => 'Логотип', 'type' => 'image', 'upload_dir' => 'partner'),
                 'partner_active' => array( 'title' => 'Опубликовать на сайте', 'type' => 'active' ),
+            ),
+            'links' => array(
+                'partner_address' => array( 'table' => 'partner_address', 'field' => 'address_partner', 'title' => 'Адреса', 'ondelete' => 'cascade'),
+            ),
+        ),
+        
+        /**
+         * Таблица "Адреса партнеров"
+         */
+        'partner_address' => array(
+            'title' => 'Адреса партнеров',
+            'fields' => array(
+                'address_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
+                'address_partner' => array( 'title' => 'Партнер', 'type' => 'table', 'table' => 'partner', 'filter' => 1, 'errors' => 'require' ),
+                'address_title' => array( 'title' => 'Адрес', 'type' => 'string', 'show' => 1, 'main' => 1, 'sort' => 'asc', 'errors' => 'require' ),
+            ),
+        ),
+        
+        /**
+         * Таблица "Типы сертификатов"
+         */
+        'certificate_type' => array(
+            'title' => 'Типы сертификатов',
+            'fields' => array(
+                'type_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
+                'type_title' => array( 'title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'sort' => 'asc', 'errors' => 'require' ),
+                'type_permanent' => array( 'title' => 'Постоянное действие', 'type' => 'boolean', 'show' => 1 )
+            ),
+            'links' => array(
+                'certificate' => array( 'table' => 'certificate', 'field' => 'certificate_type' ),
+            ),
+        ),
+        
+        /**
+         * Таблица "Серификаты"
+         */
+        'certificate' => array(
+            'title' => 'Серификаты',
+            'fields' => array(
+                'certificate_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
+                'certificate_type' => array( 'title' => 'Тип сертификата', 'type' => 'table', 'table' => 'certificate_type', 'filter' => 1, 'errors' => 'require' ),
+                'certificate_title' => array( 'title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'sort' => 'asc', 'errors' => 'require' ),
+                'certificate_description' => array( 'title' => 'Описание', 'type' => 'text', 'editor' => 1, 'errors' => 'require' ),
+                'certificate_image' => array( 'title' => 'Изображение', 'type' => 'image', 'upload_dir' => 'certificate', 'errors' => 'require' ),
+                'certificate_expiration' => array( 'title' => 'Окончание срока действия', 'type' => 'date' )
+            ),
+        ),
+        
+        /**
+         * Таблица "Связь сертификатов с товарами"
+         */
+        'product_certificate' => array(
+            'title' => 'Связь сертификатов с товарами',
+            'internal' => true,
+            'fields' => array(
+                'product_id' => array( 'title' => 'Товар', 'type' => 'table', 'table' => 'product', 'errors' => 'require' ),
+                'certificate_id' => array( 'title' => 'Сертификат', 'type' => 'table', 'table' => 'certificate', 'errors' => 'require' ),
             ),
         ),
         

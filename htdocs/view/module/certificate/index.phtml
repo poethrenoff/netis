@@ -1,0 +1,38 @@
+					<div id="page_content_title">Сертификаты</div>
+					<div class="content_ge"></div>
+					<div class="content">
+						<div>
+							<form action="" method="post" name="faqform">
+								<div class="floatleft">
+									<select name="type" style="width:220px;">
+										<option value="">-- Выберите тит сертификата --</option>
+<? foreach ($this->certificate_type_list as $certificate_type) { ?>
+										<option value="<?= $certificate_type->get_id() ?>"<? if ($this->in_request('type', $certificate_type->get_id())) { ?> selected="selected"<? } ?>><?= $certificate_type->get_type_title() ?></option>
+<? } ?>
+									</select>
+								</div>
+								<div class="floatleft"><img src="/image/sysimages/62.jpg" width="78" height="24" style="margin:0 0 0 20px; cursor:pointer" onclick="forms['faqform'].submit()" /></div>
+							</form>
+							<div class="clear"></div>
+						</div>
+<? if (count($this->certificate_list)) { ?>
+						<br />
+						
+						<table style="width: 100%">
+							<tr>
+<? 		$certificate_index = 0; ?>
+<? 		foreach ($this->certificate_list as $certificate) { ?>
+								<td style="width: 50%; text-align: center; vertical-align: top;">
+									<a href="<?= url_for(array('action' => 'download', 'id' => $certificate->get_id())) ?>"><img src="<?= $certificate->get_certificate_image() ?>/r/150/150" alt=""/></a>
+									<?= $certificate->get_certificate_description() ?>
+								</td>
+<? 			if ($certificate_index++ % 2) { ?>
+							</tr>
+							<tr>
+<? 			} ?>
+<? 		} ?>
+							</tr>
+<? } ?>
+						</table>
+<?= $this -> pages ?>
+					</div>

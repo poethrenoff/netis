@@ -23,11 +23,11 @@ class module_partner extends module
         
         if (!empty($_POST)) {
             $partner_filter = array('partner_active' => 1);
-            if ($_POST['city']) {
-                $partner_filter['partner_city'] = $_POST['city'];
+            if (init_string('city')) {
+                $partner_filter['partner_city'] = init_string('city');
             }
-            if ($_POST['type']) {
-                $partner_filter['partner_type'] = $_POST['type'];
+            if (init_string('type')) {
+                $partner_filter['partner_type'] = init_string('type');
             }
             $partner_list = model::factory('partner')->get_list($partner_filter, array('partner_title' => 'asc'));
             $this->view->assign('partner_list', $partner_list);

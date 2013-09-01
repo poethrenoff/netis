@@ -41,19 +41,36 @@ class module_joinus extends module
                 $error['email'] = 'Поле заполнено некорректно';
             }
             
+            $_POST['logo'] = '';
+            if (isset($_FILES['logo']['name']) && $_FILES['logo']['name']) {
+                $upload = upload::fetch('logo', array('upload_path' => 'partner',
+                    'allowed_types' => 'gif|jpg|jpe|jpeg|png', 'max_filesize' => 500 * 1024));
+                if ($upload->is_error()) {
+                    $error['logo'] = $upload -> get_error();
+                } else {
+                    $_POST['logo'] = $upload->get_file_link();
+                }
+            }
+            
             if (!$error) {
-                // Сохранение в базе
-                model::factory('partner')
+                // Сохранение партнера в базе
+                $partner = model::factory('partner')
                     ->set_partner_title($_POST['title'])
                     ->set_partner_site($_POST['site'])
                     ->set_partner_city($_POST['city'])
-                    ->set_partner_address($_POST['address'])
                     ->set_partner_type($_POST['type'])
                     ->set_partner_fio($_POST['fio'])
                     ->set_partner_email($_POST['email'])
                     ->set_partner_skype($_POST['skype'])
                     ->set_partner_phone($_POST['phone'])
-                    ->set_product_active(0)
+                    ->set_partner_logo($_POST['logo'])
+                    ->set_partner_active(0)
+                    ->save();
+                
+                // Сохранение адреса партнера в базе
+                $partner_address = model::factory('partner_address')
+                    ->set_address_title($_POST['address'])
+                    ->set_address_partner($partner->get_id())
                     ->save();
                 
                 // Отправка сообщения

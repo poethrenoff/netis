@@ -33,16 +33,34 @@
 <? if (count($this->partner_list)) { ?>
 						<br />
 						
-						<div>
+						<table style="width: 100%">
 <? 		foreach ($this->partner_list as $partner) { ?>
-							<b><?= $partner->get_partner_title() ?></b>
-							<blockquote>
-								Сайт компании: <a href="<?= $partner->get_partner_site() ?>"><?= $partner->get_partner_site() ?></a><br/>
-								Город: <?= $this->city_list[$partner->get_partner_city()]->get_city_title() ?><br/>
-								Адрес: <?= $partner->get_partner_address() ?><br/>
-								Тип компании: <?= $this->type_values[$partner->get_partner_type()] ?><br/>
-							</blockquote>
+							<tr>
+								<td style="width: 50%; text-align: left; vertical-align: top;">
+									<b><?= h($partner->get_partner_title()) ?></b>
+									<blockquote>
+										<a href="<?= h($partner->get_partner_site()) ?>"><?= h($partner->get_partner_site()) ?></a><br/>
+										Тип компании: <?= $this->type_values[$partner->get_partner_type()] ?><br/>
+										Город: <?= $this->city_list[$partner->get_partner_city()]->get_city_title() ?><br/>
+<? 			$address_list = $partner->get_address_list(); ?>
+<? 			if (count($address_list)) { ?>
+										<blockquote>
+<? 				foreach ($address_list as $address) { ?>
+											<?= h($address->get_address_title()) ?><br/>
+<? 				} ?>
+										</blockquote>
+<? 			} ?>
+									</blockquote>
+								</td>
+								<td style="width: 50%; text-align: center; vertical-align: middle;">
+<? 			if ($partner->get_partner_logo()) { ?>
+									<img src="<?= $partner->get_partner_logo() ?>/r/200/200" alt=""/>
+<? 			} else { ?>
+									&nbsp;
+<? 			} ?>
+								</td>
+							</tr>
 <? 		} ?>
-						</div>
+						</table>
 <? } ?>
 					</div>

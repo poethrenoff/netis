@@ -4,7 +4,7 @@
 <? if (session::flash('success')) { ?>
 						<p style="color: #448600; font-size: 16px;"><b>Спасибо. Ваша анкета отправлена.</b></p>
 <? } ?>
-						<form action="<?= url_for() ?>" method="post">
+						<form action="<?= url_for() ?>" method="post" enctype="multipart/form-data">
 							<div id="formcontent">
 								<span class="txt_blue_16">Информация о компании</span>
 								
@@ -86,7 +86,23 @@
 									</div>
 									<div class="clear"></div>
 								</div>
+								
+								<div class="formge">
+									<div class="formleft">Логотип компании</div>
+									<div class="formright">
+										<input type="file" name="logo" value="" />
+<? if ($this->error['logo']) { ?>
+										<span class="font_red"><?= $this->error['logo'] ?></span>
+<? } ?>
+										<br/>
+										<span>Принимаются файлы формата jpg, png, gif,<br/>
+											рекомендуемый размер - в пределах 200х200 пикселов, не более 500 Кб</span>
+									</div>
+									<div class="clear"></div>
+								</div>
+								
 								<br />
+								
 								<span class="txt_blue_16">Контактная информация</span><br />
 								<div class="formge">
 									<div class="formleft">ФИО</div>

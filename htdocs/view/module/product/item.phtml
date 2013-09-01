@@ -125,6 +125,29 @@
 						<br>
 <? 		} ?>
 <? } ?>
+<? if (count($this->certificate_list)) { ?>
+						<div class="downsort_2">
+							<div class="floatleft">
+								<span class="txt_blue_14">Сертификаты</span>
+							</div>
+						</div>
+						<table width="100%" border="0" cellspacing="3" cellpadding="3">
+							<tr class="font_bold">
+								<td width="60%" align="left" bgcolor="#EFEFEF">Название</td>
+								<td width="30%" align="center" bgcolor="#EFEFEF">Окончание срока действия</td>
+								<td width="10%" align="center" bgcolor="#EFEFEF">Скачать</td>
+							</tr>
+<? 			foreach ($this->certificate_list as $certificate) { ?>
+							<tr>
+								<td height="28" align="left"><?= $certificate->get_certificate_title() ?></td>
+								<td align="center"><?= date::get($certificate->get_certificate_expiration()) ?></td>
+								<td align="center"><a href="<?= url_for(array('controller' => 'about/certificate', 'action' => 'download', 'id' => $certificate->get_id())) ?>" target="_blank"><img src="/image/sysimages/70.jpg" width="30" height="28"></a></td>
+							</tr>
+<? 			} ?>
+						</table>
+						<br>
+						<br>
+<? } ?>
 					</div>
 					<div class="clear"></div>
 				</div>

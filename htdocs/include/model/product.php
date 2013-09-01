@@ -52,6 +52,29 @@ class model_product extends search
 
     }
     
+    // Возвращает сертификаты товара
+    public function get_certificate_list()
+    {
+        $certificate_list = db::select_all('
+            select
+                certificate.*
+            from
+                certificate
+                inner join certificate_type on certificate_type.type_id = certificate.certificate_type
+                inner join product_certificate on product_certificate.certificate_id = certificate.certificate_id
+            where
+                product_certificate.product_id = :product_id and
+                (type_permanent = :type_permanent or certificate.certificate_expiration >= :certificate_expiration)
+            order by
+                certificate.certificate_id',
+            array(
+                'product_id' => $this->get_id(), 'type_permanent' => 1, 'certificate_expiration' => date::now(),
+            )
+        );
+        
+        return model::factory('certificate')->get_batch($certificate_list);
+    }
+    
     // Возвращает изображение по умолчанию
     public function get_product_image()
     {
@@ -115,7 +138,7 @@ class model_product extends search
                     product.product_order',
             array('product_id' => $this->get_id(), 'product_active' => 1)
         );
-        return model::factory('product')->get_batch($product_link_list);
+        return $this->get_batch($product_link_list);
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////
