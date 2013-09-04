@@ -37,16 +37,16 @@
 <? 		foreach ($this->partner_list as $partner) { ?>
 							<tr>
 								<td style="width: 50%; text-align: left; vertical-align: top;">
-									<b><?= h($partner->get_partner_title()) ?></b>
+									<b><?= $this->escape($partner->get_partner_title()) ?></b>
 									<blockquote>
-										<a href="<?= h($partner->get_partner_site()) ?>"><?= h($partner->get_partner_site()) ?></a><br/>
+										<a href="<?= $this->escape($partner->get_partner_site()) ?>"><?= $this->escape($partner->get_partner_site()) ?></a><br/>
 										Тип компании: <?= $this->type_values[$partner->get_partner_type()] ?><br/>
 										Город: <?= $this->city_list[$partner->get_partner_city()]->get_city_title() ?><br/>
 <? 			$address_list = $partner->get_address_list(); ?>
 <? 			if (count($address_list)) { ?>
 										<blockquote>
 <? 				foreach ($address_list as $address) { ?>
-											<?= h($address->get_address_title()) ?><br/>
+											<?= $this->escape($address->get_address_title()) ?><br/>
 <? 				} ?>
 										</blockquote>
 <? 			} ?>

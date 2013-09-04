@@ -21,7 +21,7 @@
 						})
 					})
 					</script>
-					<div id="leftmenu_title"><?= h($this->get_menu_title()) ?></div>
+					<div id="leftmenu_title"><?= $this->get_menu_title() ?></div>
 					<div id="leftmenu">
 						<ul>
 <? foreach ($this->get_children() as $menu_item) { ?>
@@ -30,12 +30,12 @@
 <? 		if ($menu_item->has_children()) { ?>
 									<p class='zhankai' id='a_<?= $menu_item->get_id() ?>'></p>
 <? 		} ?>
-									<a href="<?= $menu_item->get_menu_url() ?>"><?= h($menu_item->get_menu_title()) ?></a>
+									<a href="<?= $menu_item->get_menu_url() ?>"><?= $menu_item->get_menu_title() ?></a>
 								</div>
 <? 		if ($menu_item->has_children()) { ?>
 								<div class='subleft'>
 <? 				foreach ($menu_item->get_children() as $submenu_item) { ?>
-									<a href="<?= $submenu_item->get_menu_url() ?>" class='a_subleft'><?= h($submenu_item->get_menu_title()) ?></a><br />
+									<a href="<?= $submenu_item->get_menu_url() ?>" class='a_subleft'><?= $submenu_item->get_menu_title() ?></a><br />
 <? 				} ?>
 								</div>
 							</li>

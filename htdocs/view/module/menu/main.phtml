@@ -2,7 +2,7 @@
 <? $menu_index = 1; ?>
 <? foreach ($this->get_children() as $menu_item) { ?>
 					<li>
-						<a href="<?= $menu_item->get_menu_url() ?>" class="over"><?= h($menu_item->get_menu_title()) ?></a>
+						<a href="<?= $menu_item->get_menu_url() ?>" class="over"><?= $menu_item->get_menu_title() ?></a>
 						<div class="apDiv<?= $menu_index ?> div">
 <?			if ($menu_index == 1) { ?>
 							<div class="homepro">
@@ -11,12 +11,12 @@
 <? 				foreach ($menu_item->get_children() as $submenu_item) { ?>
 <? 					if ($submenu_index > 5) continue;?>
 									<li style="z-index:<?= 1000 - $submenu_index ?>">
-										<a href="<?= $submenu_item->get_menu_url() ?>"><img src="<?= $submenu_item->get_menu_image() ?>" width="170" height="75" /></a><a href="<?= $submenu_item->get_menu_url() ?>"><span class='span<?= $submenu_index ?>'><?= h($submenu_item->get_menu_title()) ?></span></a>
+										<a href="<?= $submenu_item->get_menu_url() ?>"><img src="<?= $submenu_item->get_menu_image() ?>" width="170" height="75" /></a><a href="<?= $submenu_item->get_menu_url() ?>"><span class='span<?= $submenu_index ?>'><?= $submenu_item->get_menu_title() ?></span></a>
 <?					if ($submenu_item->has_children()) { ?>
 										<div class="subsort">
 											<dl>
 <? 						foreach ($submenu_item->get_children() as $subsubmenu_item) { ?>
-												<dd><a href="<?= $subsubmenu_item->get_menu_url() ?>"><?= h($subsubmenu_item->get_menu_title()) ?></a></dd>
+												<dd><a href="<?= $subsubmenu_item->get_menu_url() ?>"><?= $subsubmenu_item->get_menu_title() ?></a></dd>
 <? 						} ?>
 											</dl>
 										</div>
@@ -30,7 +30,7 @@
 <?			} else { ?>
 							<ul>
 <? 				foreach ($menu_item->get_children() as $submenu_item) { ?>
-								<li><a href="<?= $submenu_item->get_menu_url() ?>"><?= h($submenu_item->get_menu_title()) ?></a></li>
+								<li><a href="<?= $submenu_item->get_menu_url() ?>"><?= $submenu_item->get_menu_title() ?></a></li>
 <? 				} ?>
 							</ul>
 <?			} ?>

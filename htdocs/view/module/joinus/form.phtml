@@ -11,7 +11,7 @@
 								<div class="formge">
 									<div class="formleft">Название компании</div>
 									<div class="formright">
-										<input type="text" name="title" class="inputform" value="<?= h($this->from_request('title')) ?>" />
+										<input type="text" name="title" class="inputform" value="<?= $this->escape($this->from_request('title')) ?>" />
 										<span class="font_red">*</span>
 <? if ($this->error['title']) { ?>
 										<span class="font_red"><?= $this->error['title'] ?></span>
@@ -23,7 +23,7 @@
 								<div class="formge">
 									<div class="formleft">Сайт компании</div>
 									<div class="formright">
-										<input type="text" name="site" class="inputform" value="<?= h($this->from_request('site')) ?>" />
+										<input type="text" name="site" class="inputform" value="<?= $this->escape($this->from_request('site')) ?>" />
 										<span class="font_red">*</span>
 <? if ($this->error['site']) { ?>
 										<span class="font_red"><?= $this->error['site'] ?></span>
@@ -61,7 +61,7 @@
 								<div class="formge">
 									<div class="formleft">Адрес</div>
 									<div class="formright">
-										<input type="text" name="address" class="inputform" value="<?= h($this->from_request('address')) ?>" />
+										<input type="text" name="address" class="inputform" value="<?= $this->escape($this->from_request('address')) ?>" />
 										<span class="font_red">*</span>
 <? if ($this->error['address']) { ?>
 										<span class="font_red"><?= $this->error['address'] ?></span>
@@ -107,7 +107,7 @@
 								<div class="formge">
 									<div class="formleft">ФИО</div>
 									<div class="formright">
-										<input type="text" name="fio" class="inputform" value="<?= h($this->from_request('fio')) ?>" />
+										<input type="text" name="fio" class="inputform" value="<?= $this->escape($this->from_request('fio')) ?>" />
 										<span class="font_red">*</span>
 <? if ($this->error['fio']) { ?>
 										<span class="font_red"><?= $this->error['fio'] ?></span>
@@ -119,7 +119,7 @@
 								<div class="formge">
 									<div class="formleft">Email</div>
 									<div class="formright">
-										<input type="text" name="email" class="inputform" value="<?= h($this->from_request('email')) ?>" />
+										<input type="text" name="email" class="inputform" value="<?= $this->escape($this->from_request('email')) ?>" />
 										<span class="font_red">*</span>
 <? if ($this->error['email']) { ?>
 										<span class="font_red"><?= $this->error['email'] ?></span>
@@ -131,7 +131,7 @@
 								<div class="formge">
 									<div class="formleft">Skype</div>
 									<div class="formright">
-										<input type="text" name="skype" class="inputform" value="<?= h($this->from_request('skype')) ?>" />
+										<input type="text" name="skype" class="inputform" value="<?= $this->escape($this->from_request('skype')) ?>" />
 										<span class="font_red">*</span>
 <? if ($this->error['skype']) { ?>
 										<span class="font_red"><?= $this->error['skype'] ?></span>
@@ -143,7 +143,7 @@
 								<div class="formge">
 									<div class="formleft">Телефон</div>
 									<div class="formright">
-										<input type="text" name="phone" class="inputform" value="<?= h($this->from_request('phone')) ?>" />
+										<input type="text" name="phone" class="inputform" value="<?= $this->escape($this->from_request('phone')) ?>" />
 										<span class="font_red">*</span>
 <? if ($this->error['phone']) { ?>
 										<span class="font_red"><?= $this->error['phone'] ?></span>

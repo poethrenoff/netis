@@ -5,7 +5,7 @@
 							<ul>
 <? foreach ($this->item_list as $item) { ?>
 								<li>
-									<b><a href="<?= url_for(array('controller' => 'about/news', 'action' => 'item', 'id' => $item->get_id())) ?>"><?= h($item->get_news_title()) ?></a></b>
+									<b><a href="<?= url_for(array('controller' => 'about/news', 'action' => 'item', 'id' => $item->get_id())) ?>"><?= $item->get_news_title() ?></a></b>
 								</li>
 <?= $item->get_news_announce() ?>
 <? } ?>
