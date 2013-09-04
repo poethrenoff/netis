@@ -1,0 +1,27 @@
+					<div id="page_content_title">Операторы связи</div>
+					<div class="content_ge"></div>
+					<div class="content">
+						<div>
+							<form action="" method="post" name="faqform">
+								<div class="floatleft">
+									<select name="city" style="width:220px;">
+										<option value="">-- Выберите город --</option>
+<? foreach ($this->city_on_top_list as $city) { ?>
+										<option value="<?= $city->get_id() ?>"<? if ($this->in_request('city', $city->get_id())) { ?> selected="selected"<? } ?> style="color: <?= $city->get_city_capital() ? 'black' : 'gray' ?>"><?= $city->get_city_title() ?></option>
+<? } ?>
+<? foreach ($this->region_list as $region) { ?>
+<? 		if (count($this->city_by_region_list[$region->get_id()])) { ?>
+										<optgroup label="<?= $region->get_region_title() ?>">
+<? 			foreach ($this->city_by_region_list[$region->get_id()] as $city) { ?>
+											<option value="<?= $city->get_id() ?>"<? if ($this->in_request('city', $city->get_id())) { ?> selected="selected"<? } ?> style="color: <?= $city->get_city_capital() ? 'black' : 'gray' ?>"><?= $city->get_city_title() ?></option>
+<? 			} ?>
+										</optgroup>
+<? 		} ?>
+<? } ?>
+									</select>
+								</div>
+							</form>
+							<div class="clear"></div>
+						</div>
+						<br />
+					</div>

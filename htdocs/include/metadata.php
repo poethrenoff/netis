@@ -352,6 +352,7 @@ class metadata
             ),
             'links' => array(
                 'partner' => array( 'table' => 'partner', 'field' => 'partner_city' ),
+                'provider' => array( 'table' => 'provider', 'field' => 'provider_city' ),
             ),
         ),
         
@@ -432,6 +433,56 @@ class metadata
             'fields' => array(
                 'product_id' => array( 'title' => 'Товар', 'type' => 'table', 'table' => 'product', 'errors' => 'require' ),
                 'certificate_id' => array( 'title' => 'Сертификат', 'type' => 'table', 'table' => 'certificate', 'errors' => 'require' ),
+            ),
+        ),
+        
+        /**
+         * Таблица "Провайдеры"
+         */
+        'provider' => array(
+            'title' => 'Провайдеры',
+            'fields' => array(
+                'provider_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
+                'provider_city' => array( 'title' => 'Город', 'type' => 'table', 'table' => 'city', 'filter' => 1, 'errors' => 'require' ),
+                'provider_title' => array( 'title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'sort' => 'asc', 'errors' => 'require' ),
+                'provider_logo' => array( 'title' => 'Изображение', 'type' => 'image', 'upload_dir' => 'provider' ),
+                'provider_url' => array( 'title' => 'Сайт', 'type' => 'string', 'errors' => 'require' ),
+            ),
+            'links' => array(
+                'advice' => array( 'table' => 'provider_advice', 'field' => 'advice_provider' ),
+            ),
+            'relations' => array(
+                'product' => array( 'secondary_table' => 'product', 'relation_table' => 'provider_product',
+                    'primary_field' => 'provider_id', 'secondary_field' => 'product_id', 'title' => 'Товары' ),
+            ),
+        ),
+        
+        /**
+         * Таблица "Рекомендации"
+         */
+        'provider_advice' => array(
+            'title' => 'Рекомендации',
+            'fields' => array(
+                'advice_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
+                'advice_provider' => array( 'title' => 'Провайдер', 'type' => 'table', 'table' => 'provider', 'filter' => 1, 'errors' => 'require' ),
+                'advice_title' => array( 'title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'sort' => 'asc', 'errors' => 'require' ),
+                'advice_type' => array('title' => 'Тип', 'type' => 'select', 'filter' => 1, 'values' => array(
+                        array('value' => 'letter', 'title' => 'Письмо'),
+                        array('value' => 'instruction', 'title' => 'Инструкция')), 'errors' => 'require' ),
+                'advice_description' => array( 'title' => 'Описание', 'type' => 'text', 'editor' => 1 ),
+                'advice_attach' => array( 'title' => 'Файл', 'type' => 'file', 'upload_dir' => 'advice', 'errors' => 'require' ),
+            ),
+        ),
+        
+        /**
+         * Таблица "Связь сертификатов с товарами"
+         */
+        'provider_product' => array(
+            'title' => 'Связь провайдеров с товарами',
+            'internal' => true,
+            'fields' => array(
+                'provider_id' => array( 'title' => 'Провайдер', 'type' => 'table', 'table' => 'provider', 'errors' => 'require' ),
+                'product_id' => array( 'title' => 'Товар', 'type' => 'table', 'table' => 'product', 'errors' => 'require' ),
             ),
         ),
         
