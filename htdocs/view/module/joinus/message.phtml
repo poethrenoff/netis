@@ -3,10 +3,11 @@
 Сайт компании: <?= $this->from_request('site') ?><br/>
 Город: <?= $this->city_list[$this->from_request('city')]->get_city_title() ?><br/>
 Адрес: <?= $this->from_request('address') ?><br/>
+Телефон: <?= $this->from_request('phone') ?><br/>
 Тип компании: <?= $this->type_values[$this->from_request('type')] ?><br/><br/>
 
 <b>Контактная информация</b><br/><br/>
 ФИО: <?= $this->from_request('fio') ?><br/>
 Email: <?= $this->from_request('email') ?><br/>
 Skype: <?= $this->from_request('skype') ?><br/>
-Телефон: <?= $this->from_request('phone') ?><br/>
+Телефон для связи: <?= $this->from_request('contact_phone') ?><br/>

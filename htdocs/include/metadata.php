@@ -374,6 +374,7 @@ class metadata
                 'partner_email' => array( 'title' => 'Email', 'type' => 'string', 'errors' => 'require' ),
                 'partner_skype' => array( 'title' => 'Skype', 'type' => 'string', 'errors' => 'require' ),
                 'partner_phone' => array( 'title' => 'Телефон', 'type' => 'string', 'errors' => 'require' ),
+                'partner_contact_phone' => array( 'title' => 'Телефон для связи', 'type' => 'string', 'errors' => 'require' ),
                 'partner_logo' => array('title' => 'Логотип', 'type' => 'image', 'upload_dir' => 'partner'),
                 'partner_active' => array( 'title' => 'Опубликовать на сайте', 'type' => 'active' ),
             ),

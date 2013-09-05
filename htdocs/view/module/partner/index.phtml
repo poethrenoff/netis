@@ -40,6 +40,7 @@
 									<b><?= $this->escape($partner->get_partner_title()) ?></b>
 									<blockquote>
 										<a href="<?= $this->escape($partner->get_partner_site()) ?>"><?= $this->escape($partner->get_partner_site()) ?></a><br/>
+										Телефон: <?= $this->escape($partner->get_partner_phone()) ?><br/>
 										Тип компании: <?= $this->type_values[$partner->get_partner_type()] ?><br/>
 										Город: <?= $this->city_list[$partner->get_partner_city()]->get_city_title() ?><br/>
 <? 			$address_list = $partner->get_address_list(); ?>

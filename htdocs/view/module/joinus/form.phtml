@@ -71,6 +71,18 @@
 								</div>
 								
 								<div class="formge">
+									<div class="formleft">Телефон</div>
+									<div class="formright">
+										<input type="text" name="phone" class="inputform" value="<?= $this->escape($this->from_request('phone')) ?>" />
+										<span class="font_red">*</span>
+<? if ($this->error['phone']) { ?>
+										<span class="font_red"><?= $this->error['phone'] ?></span>
+<? } ?>
+									</div>
+									<div class="clear"></div>
+								</div>
+								
+								<div class="formge">
 									<div class="formleft">Тип компании</div>
 									<div class="formright">
 										<select name="type" style="width:220px;">
@@ -141,12 +153,12 @@
 								</div>
 								
 								<div class="formge">
-									<div class="formleft">Телефон</div>
+									<div class="formleft">Телефон для связи</div>
 									<div class="formright">
-										<input type="text" name="phone" class="inputform" value="<?= $this->escape($this->from_request('phone')) ?>" />
+										<input type="text" name="contact_phone" class="inputform" value="<?= $this->escape($this->from_request('contact_phone')) ?>" />
 										<span class="font_red">*</span>
-<? if ($this->error['phone']) { ?>
-										<span class="font_red"><?= $this->error['phone'] ?></span>
+<? if ($this->error['contact_phone']) { ?>
+										<span class="font_red"><?= $this->error['contact_phone'] ?></span>
 <? } ?>
 									</div>
 									<div class="clear"></div>

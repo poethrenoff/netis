@@ -25,7 +25,7 @@ class module_joinus extends module
             $error = array();
             
             $require_fields = array('title', 'site', 'city', 'address',
-                'type', 'fio', 'email', 'skype', 'phone');
+                'type', 'fio', 'email', 'skype', 'phone', 'contact_phone');
             foreach ($require_fields as $field_name) {
                 if (!isset($_POST[$field_name]) || is_empty($_POST[$field_name])) {
                     $error[$field_name] = 'Не заполнено обязательное поле';
@@ -63,6 +63,7 @@ class module_joinus extends module
                     ->set_partner_email($_POST['email'])
                     ->set_partner_skype($_POST['skype'])
                     ->set_partner_phone($_POST['phone'])
+                    ->set_partner_contact_phone($_POST['contact_phone'])
                     ->set_partner_logo($_POST['logo'])
                     ->set_partner_active(0)
                     ->save();
