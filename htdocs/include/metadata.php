@@ -470,7 +470,7 @@ class metadata
                 'advice_type' => array('title' => 'Тип', 'type' => 'select', 'filter' => 1, 'values' => array(
                         array('value' => 'letter', 'title' => 'Письмо'),
                         array('value' => 'instruction', 'title' => 'Инструкция')), 'errors' => 'require' ),
-                'advice_description' => array( 'title' => 'Описание', 'type' => 'text', 'editor' => 1 ),
+                'advice_description' => array( 'title' => 'Описание', 'type' => 'text' ),
                 'advice_attach' => array( 'title' => 'Файл', 'type' => 'file', 'upload_dir' => 'advice', 'errors' => 'require' ),
             ),
         ),

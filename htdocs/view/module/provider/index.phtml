@@ -2,9 +2,9 @@
 					<div class="content_ge"></div>
 					<div class="content">
 						<div>
-							<form action="" method="post" name="faqform">
+							<form id="providerform" action="" method="get">
 								<div class="floatleft">
-									<select name="city" style="width:220px;">
+									<select name="city" class="selectwidth" onchange="$('#providerdiv').load('/support/configure/get_provider/'+this.options[selectedIndex].value).show(); $('#providertable').remove();">
 										<option value="">-- Выберите город --</option>
 <? foreach ($this->city_on_top_list as $city) { ?>
 										<option value="<?= $city->get_id() ?>"<? if ($this->in_request('city', $city->get_id())) { ?> selected="selected"<? } ?> style="color: <?= $city->get_city_capital() ? 'black' : 'gray' ?>"><?= $city->get_city_title() ?></option>
@@ -19,9 +19,78 @@
 <? 		} ?>
 <? } ?>
 									</select>
+									<span id="providerdiv">
+<? include_once 'get_provider.phtml' ?>
+									</span>
 								</div>
 							</form>
 							<div class="clear"></div>
 						</div>
+<? if ($this->provider) { ?>
 						<br />
+						
+						<table id="providertable" style="width: 100%">
+							<tr>
+								<td style="width: 50%; text-align: left; vertical-align: top;">
+									<h3 style="margin: 0px;"><a href="<?= $this->provider->get_provider_url() ?>"><?= $this->provider->get_provider_title() ?></a></h3>
+								</td>
+								<td style="width: 50%; text-align: left; vertical-align: top;">
+<? 		if ($this->provider->get_provider_logo()) { ?>
+									<img src="<?= $this->provider->get_provider_logo() ?>" align="center"/>
+									<br /><br />
+<? 		} ?>
+								</td>
+							</tr>
+							<tr>
+								<td style="width: 50%; text-align: left; vertical-align: top;">
+<? 		if ($this->letter_list) { ?>
+									<b>Рекомендательные письма</b>
+									<br/>
+									<table style="width: 100%">
+<? 			foreach ($this->letter_list as $advice) { ?>
+										<tr>
+											<td style="width: 120px; text-align: center; vertical-align: top;">
+												<a href="<?= $advice->get_advice_attach() ?>"><img src="<?= $advice->get_advice_attach() ?>/r/50/100" /></a>
+											</td>
+											<td style="text-align: left; vertical-align: top;">
+												<b><?= $advice->get_advice_title() ?></b>
+												<br/>
+												<?= $advice->get_advice_description() ?>
+											</td>
+										</tr>
+<? 			} ?>
+									</table>
+<? 		} ?>
+									<br/>
+<? 		if ($this->instruction_list) { ?>
+									<b>Инструкции</b>
+									<br/>
+									<table style="width: 100%">
+<? 			foreach ($this->instruction_list as $advice) { ?>
+										<tr>
+											<td style="width: 120px; text-align: center; vertical-align: top;">
+												<a href="<?= $advice->get_advice_attach() ?>"><img src="/image/pdf_download.png" /></a>
+											</td>
+											<td style="text-align: left; vertical-align: top;">
+												<b><?= $advice->get_advice_title() ?></b><br/>
+												<a href="<?= $advice->get_advice_description() ?>">
+											</td>
+										</tr>
+<? 			} ?>
+									</table>
+<? 		} ?>
+								</td>
+								<td style="width: 50%; text-align: left; vertical-align: top;">
+<? 		if ($this->product_list) { ?>
+									<b>Рекомендованные товары</b>
+									<br/>
+									
+<? 			foreach ($this->product_list as $product) { ?>
+									<a href="<?= $product->get_product_url() ?>"><?= $product->get_product_title() ?></a><br/>
+<? 			} ?>
+<? 		} ?>
+								</td>
+							</tr>
+						</table>
 					</div>
+<? } ?>

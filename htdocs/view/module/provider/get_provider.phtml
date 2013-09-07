@@ -1,0 +1,8 @@
+									<select name="provider" class="selectwidth" style="margin-left: 50px;" onchange="$(this).parents('form:first').submit();">
+										<option value="">-- Выберите профайдера --</option>
+<? if ($this->provider_list) { ?>
+<? 		foreach ($this->provider_list as $provider) { ?>
+										<option value="<?= $provider->get_id() ?>"<? if ($this->in_request('provider', $provider->get_id())) { ?> selected="selected"<? } ?>><?= $provider->get_provider_title() ?></option>
+<? 		} ?>
+<? } ?>
+									</select>
